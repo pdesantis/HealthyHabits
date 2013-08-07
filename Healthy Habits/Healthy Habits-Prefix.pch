@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Healthy Habits' target in the 'Healthy Habits' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
