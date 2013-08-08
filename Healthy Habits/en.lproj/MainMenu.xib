@@ -63,9 +63,37 @@
 						<reference key="NSOnImage" ref="945943607"/>
 						<reference key="NSMixedImage" ref="1030659853"/>
 					</object>
+					<object class="NSMenuItem" id="368556114">
+						<reference key="NSMenu" ref="186692182"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="945943607"/>
+						<reference key="NSMixedImage" ref="1030659853"/>
+					</object>
 					<object class="NSMenuItem" id="1012459018">
 						<reference key="NSMenu" ref="186692182"/>
 						<string key="NSTitle">Activate</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="945943607"/>
+						<reference key="NSMixedImage" ref="1030659853"/>
+					</object>
+					<object class="NSMenuItem" id="1014607786">
+						<reference key="NSMenu" ref="186692182"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="945943607"/>
+						<reference key="NSMixedImage" ref="1030659853"/>
+					</object>
+					<object class="NSMenuItem" id="84989826">
+						<reference key="NSMenu" ref="186692182"/>
+						<string key="NSTitle">Quit</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="945943607"/>
@@ -76,6 +104,14 @@
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">terminate:</string>
+						<reference key="source" ref="1050"/>
+						<reference key="destination" ref="84989826"/>
+					</object>
+					<int key="connectionID">546</int>
+				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
@@ -144,6 +180,9 @@
 							<reference ref="223521212"/>
 							<reference ref="772471872"/>
 							<reference ref="1012459018"/>
+							<reference ref="368556114"/>
+							<reference ref="84989826"/>
+							<reference ref="1014607786"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -165,6 +204,22 @@
 						<reference key="parent" ref="186692182"/>
 						<string key="objectName">Activate</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">542</int>
+						<reference key="object" ref="368556114"/>
+						<reference key="parent" ref="186692182"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">543</int>
+						<reference key="object" ref="84989826"/>
+						<reference key="parent" ref="186692182"/>
+						<string key="objectName">Quit</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">544</int>
+						<reference key="object" ref="1014607786"/>
+						<reference key="parent" ref="186692182"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -177,12 +232,15 @@
 				<string key="537.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="538.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="539.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="542.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="543.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="544.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">541</int>
+			<int key="maxID">546</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
