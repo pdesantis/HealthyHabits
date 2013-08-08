@@ -38,38 +38,38 @@
 			<object class="NSCustomObject" id="755631768">
 				<string key="NSClassName">NSFontManager</string>
 			</object>
-			<object class="NSMenu" id="790932910">
+			<object class="NSMenu" id="186692182">
 				<string key="NSTitle"/>
 				<array class="NSMutableArray" key="NSMenuItems">
-					<object class="NSMenuItem" id="169386610">
-						<reference key="NSMenu" ref="790932910"/>
+					<object class="NSMenuItem" id="223521212">
+						<reference key="NSMenu" ref="186692182"/>
 						<string key="NSTitle">About Healthy Habits</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<object class="NSCustomResource" key="NSOnImage" id="761283022">
+						<object class="NSCustomResource" key="NSOnImage" id="945943607">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">NSMenuCheckmark</string>
 						</object>
-						<object class="NSCustomResource" key="NSMixedImage" id="781929601">
+						<object class="NSCustomResource" key="NSMixedImage" id="1030659853">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">NSMenuMixedState</string>
 						</object>
 					</object>
-					<object class="NSMenuItem" id="923468216">
-						<reference key="NSMenu" ref="790932910"/>
+					<object class="NSMenuItem" id="772471872">
+						<reference key="NSMenu" ref="186692182"/>
 						<string key="NSTitle">Preferences...</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="761283022"/>
-						<reference key="NSMixedImage" ref="781929601"/>
+						<reference key="NSOnImage" ref="945943607"/>
+						<reference key="NSMixedImage" ref="1030659853"/>
 					</object>
-					<object class="NSMenuItem" id="81956546">
-						<reference key="NSMenu" ref="790932910"/>
+					<object class="NSMenuItem" id="1012459018">
+						<reference key="NSMenu" ref="186692182"/>
 						<string key="NSTitle">Activate</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="761283022"/>
-						<reference key="NSMixedImage" ref="781929601"/>
+						<reference key="NSOnImage" ref="945943607"/>
+						<reference key="NSMixedImage" ref="1030659853"/>
 					</object>
 				</array>
 			</object>
@@ -88,9 +88,17 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">menu</string>
 						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="790932910"/>
+						<reference key="destination" ref="186692182"/>
 					</object>
 					<int key="connectionID">540</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">aboutButtonPressed:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="223521212"/>
+					</object>
+					<int key="connectionID">541</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -131,30 +139,30 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">536</int>
-						<reference key="object" ref="790932910"/>
+						<reference key="object" ref="186692182"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="169386610"/>
-							<reference ref="923468216"/>
-							<reference ref="81956546"/>
+							<reference ref="223521212"/>
+							<reference ref="772471872"/>
+							<reference ref="1012459018"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">537</int>
-						<reference key="object" ref="169386610"/>
-						<reference key="parent" ref="790932910"/>
+						<reference key="object" ref="223521212"/>
+						<reference key="parent" ref="186692182"/>
 						<string key="objectName">About</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">538</int>
-						<reference key="object" ref="923468216"/>
-						<reference key="parent" ref="790932910"/>
+						<reference key="object" ref="772471872"/>
+						<reference key="parent" ref="186692182"/>
 						<string key="objectName">Preferences</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">539</int>
-						<reference key="object" ref="81956546"/>
-						<reference key="parent" ref="790932910"/>
+						<reference key="object" ref="1012459018"/>
+						<reference key="parent" ref="186692182"/>
 						<string key="objectName">Activate</string>
 					</object>
 				</array>
@@ -174,13 +182,24 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">540</int>
+			<int key="maxID">541</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">AppDelegate</string>
 					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">aboutButtonPressed:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">aboutButtonPressed:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">aboutButtonPressed:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">menu</string>
 						<string key="NS.object.0">NSMenu</string>

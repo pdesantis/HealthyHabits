@@ -12,4 +12,6 @@
 
 @property (weak) IBOutlet NSMenu *menu;
 
+- (IBAction)aboutButtonPressed:(id)sender;
+
 @end

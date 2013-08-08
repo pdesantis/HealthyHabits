@@ -17,6 +17,10 @@
 		FABD220B17B2B26B0082C7A7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABD21EB17B2B26A0082C7A7 /* Cocoa.framework */; };
 		FABD221317B2B26B0082C7A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FABD221117B2B26B0082C7A7 /* InfoPlist.strings */; };
 		FABD221617B2B26B0082C7A7 /* Healthy_HabitsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD221517B2B26B0082C7A7 /* Healthy_HabitsTests.m */; };
+		FABD222517B328310082C7A7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD222417B328310082C7A7 /* Constants.m */; };
+		FABD222717B32B630082C7A7 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABD222617B32B630082C7A7 /* IOKit.framework */; };
+		FABD222D17B32DA60082C7A7 /* Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD222C17B32DA60082C7A7 /* Screen.m */; };
+		FABD222E17B32DA60082C7A7 /* Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD222C17B32DA60082C7A7 /* Screen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,11 @@
 		FABD221217B2B26B0082C7A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FABD221417B2B26B0082C7A7 /* Healthy_HabitsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Healthy_HabitsTests.h; sourceTree = "<group>"; };
 		FABD221517B2B26B0082C7A7 /* Healthy_HabitsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Healthy_HabitsTests.m; sourceTree = "<group>"; };
+		FABD222317B328310082C7A7 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		FABD222417B328310082C7A7 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		FABD222617B32B630082C7A7 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		FABD222B17B32DA60082C7A7 /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Screen.h; path = Utilities/Screen.h; sourceTree = "<group>"; };
+		FABD222C17B32DA60082C7A7 /* Screen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Screen.m; path = Utilities/Screen.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABD222717B32B630082C7A7 /* IOKit.framework in Frameworks */,
 				FABD21EC17B2B26A0082C7A7 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +104,7 @@
 		FABD21EA17B2B26A0082C7A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FABD222617B32B630082C7A7 /* IOKit.framework */,
 				FABD21EB17B2B26A0082C7A7 /* Cocoa.framework */,
 				FABD220917B2B26B0082C7A7 /* SenTestingKit.framework */,
 				FABD21ED17B2B26A0082C7A7 /* Other Frameworks */,
@@ -114,6 +125,7 @@
 		FABD21F117B2B26A0082C7A7 /* Healthy Habits */ = {
 			isa = PBXGroup;
 			children = (
+				FABD222A17B32D640082C7A7 /* Utilities */,
 				FABD21FD17B2B26A0082C7A7 /* AppDelegate.h */,
 				FABD21FE17B2B26A0082C7A7 /* AppDelegate.m */,
 				FABD220017B2B26B0082C7A7 /* MainMenu.xib */,
@@ -125,6 +137,8 @@
 		FABD21F217B2B26A0082C7A7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FABD222317B328310082C7A7 /* Constants.h */,
+				FABD222417B328310082C7A7 /* Constants.m */,
 				FABD21F317B2B26A0082C7A7 /* Healthy Habits-Info.plist */,
 				FABD21F417B2B26A0082C7A7 /* InfoPlist.strings */,
 				FABD21F717B2B26A0082C7A7 /* main.m */,
@@ -151,6 +165,15 @@
 				FABD221117B2B26B0082C7A7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FABD222A17B32D640082C7A7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FABD222B17B32DA60082C7A7 /* Screen.h */,
+				FABD222C17B32DA60082C7A7 /* Screen.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +286,8 @@
 			files = (
 				FABD21F817B2B26A0082C7A7 /* main.m in Sources */,
 				FABD21FF17B2B26A0082C7A7 /* AppDelegate.m in Sources */,
+				FABD222517B328310082C7A7 /* Constants.m in Sources */,
+				FABD222D17B32DA60082C7A7 /* Screen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABD221617B2B26B0082C7A7 /* Healthy_HabitsTests.m in Sources */,
+				FABD222E17B32DA60082C7A7 /* Screen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +478,7 @@
 				FABD221B17B2B26B0082C7A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FABD221C17B2B26B0082C7A7 /* Build configuration list for PBXNativeTarget "Healthy HabitsTests" */ = {
 			isa = XCConfigurationList;
@@ -460,6 +487,7 @@
 				FABD221E17B2B26B0082C7A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

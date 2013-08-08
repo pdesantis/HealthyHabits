@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Screen.h"
 
 @interface AppDelegate ()
 @property   (strong, nonatomic) NSStatusItem    *statusItem;
@@ -20,6 +21,11 @@
     self.statusItem.menu = self.menu;
     self.statusItem.title = @"∆";
     self.statusItem.highlightMode = YES;
+}
+
+- (IBAction)aboutButtonPressed:(id)sender
+{
+    
 }
 
 @end
