@@ -60,7 +60,7 @@
 
 - (IBAction)quitButtonPressed:(id)sender
 {
-    
+    [[NSApplication sharedApplication] terminate:sender];
 }
 
 
