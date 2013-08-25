@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  Healthy Habits
+
+  Created by Patrick DeSantis on 8/24/13.
+  Copyright (c) 2013 Patrick DeSantis. All rights reserved.
+*/
+
+"title" = "∆";
+"tooltip" = "∆";
+
+"Activate" = "Activate";
+"Deactivate" = "Deactivate";
+
+"You should go for a walk" = "You should go for a walk";
+"Welcome back" = "Welcome back";

@@ -9,3 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern const CFStringRef kDisplayBrightness;
+
+extern const NSTimeInterval kTimerInterval;
+extern const NSTimeInterval kDurationBetweenSleeps;
+extern const NSTimeInterval kDurationOfSleep;

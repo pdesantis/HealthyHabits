@@ -11,7 +11,9 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (weak) IBOutlet NSMenu *menu;
+@property (weak) IBOutlet NSMenuItem *activateButton;
 
 - (IBAction)aboutButtonPressed:(id)sender;
+- (IBAction)activateButtonPressed:(id)sender;
 
 @end

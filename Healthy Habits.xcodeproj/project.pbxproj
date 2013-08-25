@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA66DC8F17C9CE1D0010F2A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA66DC8E17C9CE1D0010F2A6 /* Localizable.strings */; };
 		FABD21EC17B2B26A0082C7A7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABD21EB17B2B26A0082C7A7 /* Cocoa.framework */; };
 		FABD21F617B2B26A0082C7A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FABD21F417B2B26A0082C7A7 /* InfoPlist.strings */; };
 		FABD21F817B2B26A0082C7A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD21F717B2B26A0082C7A7 /* main.m */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA66DC8E17C9CE1D0010F2A6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FABD21E817B2B26A0082C7A7 /* Healthy Habits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Healthy Habits.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABD21EB17B2B26A0082C7A7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FABD21EE17B2B26A0082C7A7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -139,6 +141,7 @@
 			children = (
 				FABD222317B328310082C7A7 /* Constants.h */,
 				FABD222417B328310082C7A7 /* Constants.m */,
+				FA66DC8E17C9CE1D0010F2A6 /* Localizable.strings */,
 				FABD21F317B2B26A0082C7A7 /* Healthy Habits-Info.plist */,
 				FABD21F417B2B26A0082C7A7 /* InfoPlist.strings */,
 				FABD21F717B2B26A0082C7A7 /* main.m */,
@@ -250,6 +253,7 @@
 				FABD21F617B2B26A0082C7A7 /* InfoPlist.strings in Resources */,
 				FABD21FC17B2B26A0082C7A7 /* Credits.rtf in Resources */,
 				FABD220217B2B26B0082C7A7 /* MainMenu.xib in Resources */,
+				FA66DC8F17C9CE1D0010F2A6 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,3 +9,7 @@
 #import "Constants.h"
 
 CFStringRef const kDisplayBrightness = CFSTR(kIODisplayBrightnessKey);
+
+NSTimeInterval const kTimerInterval = 1;
+NSTimeInterval const kDurationBetweenSleeps = 10;
+NSTimeInterval const kDurationOfSleep = 10;
