@@ -12,8 +12,9 @@
 @interface AppDelegate ()
 @property   (strong, nonatomic) NSStatusItem        *statusItem;
 
+@property   (strong, nonatomic) id                  inputEventHandler;
 @property   (strong, nonatomic) NSTimer             *timer;
-@property   (strong, nonatomic) NSTimer             *actionTimer;
+@property   (strong, nonatomic) NSTimer             *walkTimer;
 @property   (strong, nonatomic) NSSpeechSynthesizer *speechSynthesizer;
 
 @property   (nonatomic) NSTimeInterval              lastWalkTime;
@@ -32,11 +33,6 @@
     self.statusItem.highlightMode = YES;
     
     self.speechSynthesizer = [[NSSpeechSynthesizer alloc] init];
-    
-    self.lastInteractionTime = [NSDate timeIntervalSinceReferenceDate];
-    [NSEvent addGlobalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent *event){
-        self.lastInteractionTime = [NSDate timeIntervalSinceReferenceDate];
-    }];
 }
 
 - (IBAction)aboutButtonPressed:(id)sender
@@ -48,12 +44,42 @@
 {
     NSLog(@"activateButtonPressed");
     if (self.timer.isValid) {
-        self.activateButton.title = NSLocalizedString(@"Activate", nil);
-        [self.timer invalidate];
+        [self deactivate];
     } else {
-        self.activateButton.title = NSLocalizedString(@"Deactivate", nil);
-        [self setupTimer];
+        [self activate];
     }
+}
+
+
+
+#pragma mark - Start / Stop methods
+- (void)activate
+{
+    self.lastInteractionTime = [NSDate timeIntervalSinceReferenceDate];
+    
+    // Create event handler for all input events
+    self.inputEventHandler = [NSEvent addGlobalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent *event){
+        self.lastInteractionTime = [NSDate timeIntervalSinceReferenceDate];
+    }];
+    
+    // Update labels
+    self.activateButton.title = NSLocalizedString(@"Deactivate", nil);
+    
+    // Create periodic update timer
+    [self setupTimer];
+}
+
+- (void)deactivate
+{
+    // Remove input event handler
+    [NSEvent removeMonitor:self.inputEventHandler];
+    self.inputEventHandler = nil;
+    
+    // Update labels
+    self.activateButton.title = NSLocalizedString(@"Activate", nil);
+    
+    // Stop timer
+    [self.timer invalidate];
 }
 
 - (void)setupTimer
@@ -67,44 +93,47 @@
                                                  repeats:YES];
 }
 
+
+
+#pragma mark - Timer methods
 - (void)update:(NSTimer *)timer
 {
     NSLog(@"%i - isWalking", self.isWalking);
-    NSLog(@"%i - last walk time, %f", self.lastWalkTime < kDurationBetweenSleeps, self.lastWalkTime);
-    NSLog(@"%i - last interaction time, %f", self.lastInteractionTime < kDurationBetweenSleeps, self.lastInteractionTime);
-    
+    NSLog(@"%i - last interaction time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= kDurationBetweenSleeps, self.lastInteractionTime);
+    NSLog(@"%i - last walk time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= kDurationBetweenSleeps, self.lastWalkTime);
+
+    // If the time since the user last touched the computer is more than the time between walks, interperet it as a walk
     if (!self.isWalking
         && [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= kDurationBetweenSleeps) {
         self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
     }
-    
+
+    // If the time since the user last went for a walk is more than the time between walks, tell the user to go for a walk
     if (!self.isWalking
         && [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= kDurationBetweenSleeps) {
-        
         [self beginWalk];
     }
 }
 
 - (void)endWalk:(NSTimer *)timer
 {
-    NSLog(@"endWalk");
+    // UI updates
     [self.speechSynthesizer startSpeakingString:NSLocalizedString(@"Welcome back", nil)];
-    self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
-    self.isWalking = NO;
     [Screen adjustBrightness:0.75f];
-    [self.actionTimer invalidate];
-    [self setupTimer];
+
+    self.isWalking = NO;
+    self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
 }
 
 
 - (void)beginWalk
 {
-    NSLog(@"beginWalk");
-    self.isWalking = YES;
+    // UI updates
     [self.speechSynthesizer startSpeakingString:NSLocalizedString(@"You should go for a walk", nil)];
-    
     [Screen adjustBrightness:0.0f];
-    [NSTimer scheduledTimerWithTimeInterval:kDurationOfSleep
+
+    self.isWalking = YES;
+    self.walkTimer = [NSTimer scheduledTimerWithTimeInterval:kDurationOfSleep
                                      target:self
                                    selector:@selector(endWalk:)
                                    userInfo:nil
