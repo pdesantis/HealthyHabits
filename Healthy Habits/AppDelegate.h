@@ -15,5 +15,6 @@
 
 - (IBAction)aboutButtonPressed:(id)sender;
 - (IBAction)activateButtonPressed:(id)sender;
+- (IBAction)quitButtonPressed:(id)sender;
 
 @end

@@ -8,8 +8,9 @@
 
 #import "AppDelegate.h"
 #import "Screen.h"
+#import "AboutWindowController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <NSWindowDelegate>
 @property   (strong, nonatomic) NSStatusItem        *statusItem;
 
 @property   (strong, nonatomic) id                  inputEventHandler;
@@ -21,6 +22,8 @@
 @property   (nonatomic) NSTimeInterval              lastInteractionTime;
 @property   (nonatomic) BOOL                        isWalking;
 @property   (nonatomic) float                       previousBrightness;
+
+@property   (strong, nonatomic) AboutWindowController   *aboutWindowController;
 @end
 
 @implementation AppDelegate
@@ -36,19 +39,36 @@
     self.speechSynthesizer = [[NSSpeechSynthesizer alloc] init];
 }
 
+
+
+#pragma mark - IBAction
 - (IBAction)aboutButtonPressed:(id)sender
 {
-    
+    self.aboutWindowController = [[AboutWindowController alloc] init];
+    [self.aboutWindowController showWindow:nil];
+    self.aboutWindowController.window.delegate = self;
 }
 
 - (IBAction)activateButtonPressed:(id)sender
 {
-    NSLog(@"activateButtonPressed");
     if (self.timer.isValid) {
         [self deactivate];
     } else {
         [self activate];
     }
+}
+
+- (IBAction)quitButtonPressed:(id)sender
+{
+    
+}
+
+
+
+#pragma mark - NSWindowDelegate
+- (void)windowWillClose:(NSNotification *)notification
+{
+    self.aboutWindowController = nil;
 }
 
 
