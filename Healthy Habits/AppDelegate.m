@@ -20,6 +20,7 @@
 @property   (nonatomic) NSTimeInterval              lastWalkTime;
 @property   (nonatomic) NSTimeInterval              lastInteractionTime;
 @property   (nonatomic) BOOL                        isWalking;
+@property   (nonatomic) float                       previousBrightness;
 @end
 
 @implementation AppDelegate
@@ -119,7 +120,7 @@
 {
     // UI updates
     [self.speechSynthesizer startSpeakingString:NSLocalizedString(@"Welcome back", nil)];
-    [Screen adjustBrightness:0.75f];
+    [Screen adjustBrightness:self.previousBrightness];
 
     self.isWalking = NO;
     self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
@@ -130,6 +131,7 @@
 {
     // UI updates
     [self.speechSynthesizer startSpeakingString:NSLocalizedString(@"You should go for a walk", nil)];
+    self.previousBrightness = [Screen getBrightness];
     [Screen adjustBrightness:0.0f];
 
     self.isWalking = YES;
