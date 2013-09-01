@@ -11,5 +11,9 @@
 extern const CFStringRef kDisplayBrightness;
 
 extern const NSTimeInterval kTimerInterval;
-extern const NSTimeInterval kDurationBetweenSleeps;
-extern const NSTimeInterval kDurationOfSleep;
+
+extern const BOOL kDefaultShouldActivateOnLaunch;
+extern const BOOL kDefaultShouldStartOnLogin;
+extern const BOOL kDefaultShouldSpeak;
+extern const NSInteger kDefaultTimeDurationBetweenWalks;
+extern const NSInteger kDefaultTimeDurationOfWalk;

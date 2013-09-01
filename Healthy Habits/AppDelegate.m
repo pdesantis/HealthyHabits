@@ -7,8 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "Screen.h"
 #import "AboutWindowController.h"
+#import "Preferences.h"
+#import "Screen.h"
 
 @interface AppDelegate () <NSWindowDelegate>
 @property   (strong, nonatomic) NSStatusItem        *statusItem;
@@ -18,6 +19,7 @@
 @property   (strong, nonatomic) NSTimer             *walkTimer;
 @property   (strong, nonatomic) NSSpeechSynthesizer *speechSynthesizer;
 
+@property   (strong, nonatomic) Preferences         *preferences;
 @property   (nonatomic) NSTimeInterval              lastWalkTime;
 @property   (nonatomic) NSTimeInterval              lastInteractionTime;
 @property   (nonatomic) BOOL                        isWalking;
@@ -27,6 +29,16 @@
 @end
 
 @implementation AppDelegate
+
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
+{
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"shouldActivateOnLaunch": [NSNumber numberWithBool:kDefaultShouldActivateOnLaunch],
+                                                             @"shouldSpeak": [NSNumber numberWithBool:kDefaultShouldSpeak],
+                                                             @"shouldStartOnLogin": [NSNumber numberWithInteger:kDefaultShouldStartOnLogin],
+                                                             @"timeDurationBetweenWalks": [NSNumber numberWithInteger:kDefaultTimeDurationBetweenWalks],
+                                                             @"timeDurationOfWalk": [NSNumber numberWithInteger:kDefaultTimeDurationOfWalk] }];
+    self.preferences = [Preferences sharedPreferences];
+}
 
 - (void)awakeFromNib
 {
@@ -120,18 +132,18 @@
 - (void)update:(NSTimer *)timer
 {
     NSLog(@"%i - isWalking", self.isWalking);
-    NSLog(@"%i - last interaction time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= kDurationBetweenSleeps, self.lastInteractionTime);
-    NSLog(@"%i - last walk time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= kDurationBetweenSleeps, self.lastWalkTime);
+    NSLog(@"%i - last interaction time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= self.preferences.timeDurationBetweenWalks, self.lastInteractionTime);
+    NSLog(@"%i - last walk time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= self.preferences.timeDurationBetweenWalks, self.lastWalkTime);
 
     // If the time since the user last touched the computer is more than the time between walks, interperet it as a walk
     if (!self.isWalking
-        && [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= kDurationBetweenSleeps) {
+        && [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= self.preferences.timeDurationBetweenWalks) {
         self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
     }
 
     // If the time since the user last went for a walk is more than the time between walks, tell the user to go for a walk
     if (!self.isWalking
-        && [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= kDurationBetweenSleeps) {
+        && [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= self.preferences.timeDurationBetweenWalks) {
         [self beginWalk];
     }
 }
@@ -155,7 +167,7 @@
     [Screen adjustBrightness:0.0f];
 
     self.isWalking = YES;
-    self.walkTimer = [NSTimer scheduledTimerWithTimeInterval:kDurationOfSleep
+    self.walkTimer = [NSTimer scheduledTimerWithTimeInterval:self.preferences.timeDurationOfWalk
                                      target:self
                                    selector:@selector(endWalk:)
                                    userInfo:nil

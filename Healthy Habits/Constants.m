@@ -11,5 +11,9 @@
 CFStringRef const kDisplayBrightness = CFSTR(kIODisplayBrightnessKey);
 
 NSTimeInterval const kTimerInterval = 1;
-NSTimeInterval const kDurationBetweenSleeps = 10;
-NSTimeInterval const kDurationOfSleep = 10;
+
+BOOL const kDefaultShouldActivateOnLaunch = NO;
+BOOL const kDefaultShouldStartOnLogin = NO;
+BOOL const kDefaultShouldSpeak = NO;
+NSInteger const kDefaultTimeDurationBetweenWalks = 60 * 20;
+NSInteger const kDefaultTimeDurationOfWalk = 60 * 5;
