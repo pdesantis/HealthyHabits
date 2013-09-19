@@ -24,6 +24,9 @@
 		FABD222717B32B630082C7A7 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABD222617B32B630082C7A7 /* IOKit.framework */; };
 		FABD222D17B32DA60082C7A7 /* Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD222C17B32DA60082C7A7 /* Screen.m */; };
 		FABD222E17B32DA60082C7A7 /* Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD222C17B32DA60082C7A7 /* Screen.m */; };
+		FABFEB3317D2E2C800883B9C /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FABFEB3117D2E2C800883B9C /* PreferencesWindowController.m */; };
+		FABFEB3417D2E2C800883B9C /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABFEB3217D2E2C800883B9C /* PreferencesWindowController.xib */; };
+		FABFEB3A17D2F85100883B9C /* StepperObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FABFEB3917D2F85100883B9C /* StepperObject.m */; };
 		FAFAA96717D06F02006798DD /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFAA96617D06F02006798DD /* Preferences.m */; };
 		FAFAA96817D06F02006798DD /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFAA96617D06F02006798DD /* Preferences.m */; };
 /* End PBXBuildFile section */
@@ -67,6 +70,11 @@
 		FABD222617B32B630082C7A7 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		FABD222B17B32DA60082C7A7 /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Screen.h; path = Utilities/Screen.h; sourceTree = "<group>"; };
 		FABD222C17B32DA60082C7A7 /* Screen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Screen.m; path = Utilities/Screen.m; sourceTree = "<group>"; };
+		FABFEB3017D2E2C800883B9C /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesWindowController.h; path = Preferences/PreferencesWindowController.h; sourceTree = "<group>"; };
+		FABFEB3117D2E2C800883B9C /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesWindowController.m; path = Preferences/PreferencesWindowController.m; sourceTree = "<group>"; };
+		FABFEB3217D2E2C800883B9C /* PreferencesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesWindowController.xib; path = Preferences/PreferencesWindowController.xib; sourceTree = "<group>"; };
+		FABFEB3817D2F85100883B9C /* StepperObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepperObject.h; sourceTree = "<group>"; };
+		FABFEB3917D2F85100883B9C /* StepperObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepperObject.m; sourceTree = "<group>"; };
 		FAFAA96517D06F02006798DD /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = Models/Preferences.h; sourceTree = "<group>"; };
 		FAFAA96617D06F02006798DD /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Preferences.m; path = Models/Preferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,11 +165,14 @@
 			children = (
 				FA66DC9317C9EFB00010F2A6 /* About */,
 				FA72141A17CA9D4100D1DC2A /* Models */,
+				FABFEB2F17D2E29200883B9C /* Preferences */,
 				FABD222A17B32D640082C7A7 /* Utilities */,
 				FABD21FD17B2B26A0082C7A7 /* AppDelegate.h */,
 				FABD21FE17B2B26A0082C7A7 /* AppDelegate.m */,
 				FABD220017B2B26B0082C7A7 /* MainMenu.xib */,
 				FABD21F217B2B26A0082C7A7 /* Supporting Files */,
+				FABFEB3817D2F85100883B9C /* StepperObject.h */,
+				FABFEB3917D2F85100883B9C /* StepperObject.m */,
 			);
 			path = "Healthy Habits";
 			sourceTree = "<group>";
@@ -207,6 +218,16 @@
 				FABD222C17B32DA60082C7A7 /* Screen.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		FABFEB2F17D2E29200883B9C /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				FABFEB3017D2E2C800883B9C /* PreferencesWindowController.h */,
+				FABFEB3117D2E2C800883B9C /* PreferencesWindowController.m */,
+				FABFEB3217D2E2C800883B9C /* PreferencesWindowController.xib */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +306,7 @@
 				FABD220217B2B26B0082C7A7 /* MainMenu.xib in Resources */,
 				FA66DC8F17C9CE1D0010F2A6 /* Localizable.strings in Resources */,
 				FA66DC9B17C9F0110010F2A6 /* AboutWindowController.xib in Resources */,
+				FABFEB3417D2E2C800883B9C /* PreferencesWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +347,8 @@
 				FABD222D17B32DA60082C7A7 /* Screen.m in Sources */,
 				FA66DC9A17C9F0110010F2A6 /* AboutWindowController.m in Sources */,
 				FAFAA96717D06F02006798DD /* Preferences.m in Sources */,
+				FABFEB3317D2E2C800883B9C /* PreferencesWindowController.m in Sources */,
+				FABFEB3A17D2F85100883B9C /* StepperObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

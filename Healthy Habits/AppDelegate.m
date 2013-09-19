@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "AboutWindowController.h"
 #import "Preferences.h"
+#import "PreferencesWindowController.h"
 #import "Screen.h"
 
 @interface AppDelegate () <NSWindowDelegate>
@@ -26,6 +27,7 @@
 @property   (nonatomic) float                       previousBrightness;
 
 @property   (strong, nonatomic) AboutWindowController   *aboutWindowController;
+@property   (strong, nonatomic) PreferencesWindowController *preferencesWindowController;
 @end
 
 @implementation AppDelegate
@@ -68,6 +70,13 @@
     } else {
         [self activate];
     }
+}
+
+- (IBAction)preferencesButtonPressed:(id)sender
+{
+    self.preferencesWindowController = [[PreferencesWindowController alloc] init];
+    [self.preferencesWindowController showWindow:nil];
+    self.preferencesWindowController.window.delegate = self;
 }
 
 - (IBAction)quitButtonPressed:(id)sender
