@@ -12,6 +12,10 @@
 #import "Screen.h"
 
 @interface AppDelegate () <NSWindowDelegate>
+
+@property (weak) IBOutlet NSMenu *menu;
+@property (weak) IBOutlet NSMenuItem *activateButton;
+
 @property   (strong, nonatomic) NSStatusItem        *statusItem;
 
 @property   (strong, nonatomic) id                  inputEventHandler;
@@ -26,6 +30,7 @@
 @property   (nonatomic) float                       previousBrightness;
 
 @property   (strong, nonatomic) AboutWindowController   *aboutWindowController;
+
 @end
 
 @implementation AppDelegate
@@ -33,10 +38,10 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"shouldActivateOnLaunch": [NSNumber numberWithBool:kDefaultShouldActivateOnLaunch],
-                                                             @"shouldSpeak": [NSNumber numberWithBool:kDefaultShouldSpeak],
-                                                             @"shouldStartOnLogin": [NSNumber numberWithInteger:kDefaultShouldStartOnLogin],
-                                                             @"timeDurationBetweenWalks": [NSNumber numberWithInteger:kDefaultTimeDurationBetweenWalks],
-                                                             @"timeDurationOfWalk": [NSNumber numberWithInteger:kDefaultTimeDurationOfWalk] }];
+                                                              @"shouldSpeak": [NSNumber numberWithBool:kDefaultShouldSpeak],
+                                                              @"shouldStartOnLogin": [NSNumber numberWithInteger:kDefaultShouldStartOnLogin],
+                                                              @"timeDurationBetweenWalks": [NSNumber numberWithInteger:kDefaultTimeDurationBetweenWalks],
+                                                              @"timeDurationOfWalk": [NSNumber numberWithInteger:kDefaultTimeDurationOfWalk] }];
     self.preferences = [Preferences sharedPreferences];
 }
 
