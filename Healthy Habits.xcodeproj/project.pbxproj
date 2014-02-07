@@ -24,6 +24,14 @@
 		FABD222717B32B630082C7A7 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABD222617B32B630082C7A7 /* IOKit.framework */; };
 		FABD222D17B32DA60082C7A7 /* Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD222C17B32DA60082C7A7 /* Screen.m */; };
 		FABD222E17B32DA60082C7A7 /* Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD222C17B32DA60082C7A7 /* Screen.m */; };
+		FADF37EB18A4BE3400E4A224 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FADF37E918A4BE3400E4A224 /* PreferencesWindowController.m */; };
+		FADF37EC18A4BE3400E4A224 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FADF37E918A4BE3400E4A224 /* PreferencesWindowController.m */; };
+		FADF37ED18A4BE3400E4A224 /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADF37EA18A4BE3400E4A224 /* PreferencesWindowController.xib */; };
+		FADF37EE18A4BE3400E4A224 /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADF37EA18A4BE3400E4A224 /* PreferencesWindowController.xib */; };
+		FADF37F118A4CC4B00E4A224 /* CustomStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = FADF37F018A4CC4B00E4A224 /* CustomStatusView.m */; };
+		FADF37F218A4CC4B00E4A224 /* CustomStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = FADF37F018A4CC4B00E4A224 /* CustomStatusView.m */; };
+		FADF37F418A4D22100E4A224 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADF37F318A4D22100E4A224 /* Images.xcassets */; };
+		FADF37F518A4D22100E4A224 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FADF37F318A4D22100E4A224 /* Images.xcassets */; };
 		FAFAA96717D06F02006798DD /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFAA96617D06F02006798DD /* Preferences.m */; };
 		FAFAA96817D06F02006798DD /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFAA96617D06F02006798DD /* Preferences.m */; };
 /* End PBXBuildFile section */
@@ -67,6 +75,12 @@
 		FABD222617B32B630082C7A7 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		FABD222B17B32DA60082C7A7 /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Screen.h; path = Utilities/Screen.h; sourceTree = "<group>"; };
 		FABD222C17B32DA60082C7A7 /* Screen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Screen.m; path = Utilities/Screen.m; sourceTree = "<group>"; };
+		FADF37E818A4BE3400E4A224 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesWindowController.h; path = Classes/PreferencesWindowController.h; sourceTree = "<group>"; };
+		FADF37E918A4BE3400E4A224 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesWindowController.m; path = Classes/PreferencesWindowController.m; sourceTree = "<group>"; };
+		FADF37EA18A4BE3400E4A224 /* PreferencesWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesWindowController.xib; path = Classes/PreferencesWindowController.xib; sourceTree = "<group>"; };
+		FADF37EF18A4CC4B00E4A224 /* CustomStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomStatusView.h; path = Classes/CustomStatusView.h; sourceTree = "<group>"; };
+		FADF37F018A4CC4B00E4A224 /* CustomStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomStatusView.m; path = Classes/CustomStatusView.m; sourceTree = "<group>"; };
+		FADF37F318A4D22100E4A224 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FAFAA96517D06F02006798DD /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = Models/Preferences.h; sourceTree = "<group>"; };
 		FAFAA96617D06F02006798DD /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Preferences.m; path = Models/Preferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,11 +169,14 @@
 		FABD21F117B2B26A0082C7A7 /* Healthy Habits */ = {
 			isa = PBXGroup;
 			children = (
+				FADF37E718A4BDFC00E4A224 /* Preferences */,
 				FA66DC9317C9EFB00010F2A6 /* About */,
 				FA72141A17CA9D4100D1DC2A /* Models */,
 				FABD222A17B32D640082C7A7 /* Utilities */,
 				FABD21FD17B2B26A0082C7A7 /* AppDelegate.h */,
 				FABD21FE17B2B26A0082C7A7 /* AppDelegate.m */,
+				FADF37EF18A4CC4B00E4A224 /* CustomStatusView.h */,
+				FADF37F018A4CC4B00E4A224 /* CustomStatusView.m */,
 				FABD220017B2B26B0082C7A7 /* MainMenu.xib */,
 				FABD21F217B2B26A0082C7A7 /* Supporting Files */,
 			);
@@ -177,6 +194,7 @@
 				FABD21F717B2B26A0082C7A7 /* main.m */,
 				FABD21F917B2B26A0082C7A7 /* Healthy Habits-Prefix.pch */,
 				FABD21FA17B2B26A0082C7A7 /* Credits.rtf */,
+				FADF37F318A4D22100E4A224 /* Images.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -207,6 +225,16 @@
 				FABD222C17B32DA60082C7A7 /* Screen.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		FADF37E718A4BDFC00E4A224 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				FADF37E818A4BE3400E4A224 /* PreferencesWindowController.h */,
+				FADF37E918A4BE3400E4A224 /* PreferencesWindowController.m */,
+				FADF37EA18A4BE3400E4A224 /* PreferencesWindowController.xib */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,7 +308,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADF37ED18A4BE3400E4A224 /* PreferencesWindowController.xib in Resources */,
 				FABD21F617B2B26A0082C7A7 /* InfoPlist.strings in Resources */,
+				FADF37F418A4D22100E4A224 /* Images.xcassets in Resources */,
 				FABD21FC17B2B26A0082C7A7 /* Credits.rtf in Resources */,
 				FABD220217B2B26B0082C7A7 /* MainMenu.xib in Resources */,
 				FA66DC8F17C9CE1D0010F2A6 /* Localizable.strings in Resources */,
@@ -292,6 +322,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADF37F518A4D22100E4A224 /* Images.xcassets in Resources */,
+				FADF37EE18A4BE3400E4A224 /* PreferencesWindowController.xib in Resources */,
 				FABD221317B2B26B0082C7A7 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,9 +354,11 @@
 				FABD21F817B2B26A0082C7A7 /* main.m in Sources */,
 				FABD21FF17B2B26A0082C7A7 /* AppDelegate.m in Sources */,
 				FABD222517B328310082C7A7 /* Constants.m in Sources */,
+				FADF37EB18A4BE3400E4A224 /* PreferencesWindowController.m in Sources */,
 				FABD222D17B32DA60082C7A7 /* Screen.m in Sources */,
 				FA66DC9A17C9F0110010F2A6 /* AboutWindowController.m in Sources */,
 				FAFAA96717D06F02006798DD /* Preferences.m in Sources */,
+				FADF37F118A4CC4B00E4A224 /* CustomStatusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +367,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABD221617B2B26B0082C7A7 /* Healthy_HabitsTests.m in Sources */,
+				FADF37F218A4CC4B00E4A224 /* CustomStatusView.m in Sources */,
 				FABD222E17B32DA60082C7A7 /* Screen.m in Sources */,
+				FADF37EC18A4BE3400E4A224 /* PreferencesWindowController.m in Sources */,
 				FAFAA96817D06F02006798DD /* Preferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

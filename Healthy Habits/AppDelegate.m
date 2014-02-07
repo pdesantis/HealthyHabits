@@ -8,28 +8,30 @@
 
 #import "AppDelegate.h"
 #import "AboutWindowController.h"
+#import "CustomStatusView.h"
 #import "Preferences.h"
+#import "PreferencesWindowController.h"
 #import "Screen.h"
 
-@interface AppDelegate () <NSWindowDelegate>
+@interface AppDelegate () <NSMenuDelegate, NSWindowDelegate>
 
-@property (weak) IBOutlet NSMenu *menu;
-@property (weak) IBOutlet NSMenuItem *activateButton;
+@property (weak, nonatomic) IBOutlet NSMenu *menu;
+@property (weak, nonatomic) IBOutlet NSMenuItem *activateButton;
 
-@property   (strong, nonatomic) NSStatusItem        *statusItem;
+@property (strong, nonatomic) NSStatusItem *statusItem;
 
-@property   (strong, nonatomic) id                  inputEventHandler;
-@property   (strong, nonatomic) NSTimer             *timer;
-@property   (strong, nonatomic) NSTimer             *walkTimer;
-@property   (strong, nonatomic) NSSpeechSynthesizer *speechSynthesizer;
+@property (strong, nonatomic) id inputEventHandler;
+@property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) NSTimer *walkTimer;
+@property (strong, nonatomic) NSSpeechSynthesizer *speechSynthesizer;
 
-@property   (strong, nonatomic) Preferences         *preferences;
-@property   (nonatomic) NSTimeInterval              lastWalkTime;
-@property   (nonatomic) NSTimeInterval              lastInteractionTime;
-@property   (nonatomic) BOOL                        isWalking;
-@property   (nonatomic) float                       previousBrightness;
+@property (assign, nonatomic) NSTimeInterval lastWalkTime;
+@property (assign, nonatomic) NSTimeInterval lastInteractionTime;
+@property (assign, nonatomic) BOOL isWalking;
+@property (assign, nonatomic) float previousBrightness;
 
-@property   (strong, nonatomic) AboutWindowController   *aboutWindowController;
+@property (strong, nonatomic) AboutWindowController *aboutWindowController;
+@property (strong, nonatomic) PreferencesWindowController *preferencesWindowController;
 
 @end
 
@@ -42,20 +44,35 @@
                                                               @"shouldStartOnLogin": [NSNumber numberWithInteger:kDefaultShouldStartOnLogin],
                                                               @"timeDurationBetweenWalks": [NSNumber numberWithInteger:kDefaultTimeDurationBetweenWalks],
                                                               @"timeDurationOfWalk": [NSNumber numberWithInteger:kDefaultTimeDurationOfWalk] }];
-    self.preferences = [Preferences sharedPreferences];
 }
 
 - (void)awakeFromNib
 {
-    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-    self.statusItem.menu = self.menu;
-    self.statusItem.title = NSLocalizedString(@"title", nil);
-    self.statusItem.toolTip = NSLocalizedString(@"tooltip", nil);
-    self.statusItem.highlightMode = YES;
-    
-    self.speechSynthesizer = [[NSSpeechSynthesizer alloc] init];
+    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:22.0f];
+    self.statusItem.title = NSLocalizedString(@"menu bar title - unactive", nil);
+
+    CustomStatusView *cool = [[CustomStatusView alloc] init];
+    cool.target = self;
+    cool.action = @selector(single:);
+    cool.rightAction = @selector(double:);
+    cool.activeImage = [NSImage imageNamed:@"tree"];
+    cool.activeImageHighlighted = [NSImage imageNamed:@"tree-white"];
+    cool.unactiveImage = [NSImage imageNamed:@"tree-empty"];
+    cool.unactiveImageHighlighted = [NSImage imageNamed:@"tree-empty-white"];
+    self.statusItem.view = cool;
+
+    self.menu.delegate = self;
 }
 
+- (IBAction)single:(id)sender
+{
+    [self activateButtonPressed:nil];
+}
+
+- (IBAction)double:(id)sender
+{
+    [self.statusItem popUpStatusItemMenu:self.menu];
+}
 
 
 #pragma mark - IBAction
@@ -69,7 +86,10 @@
 
 - (IBAction)preferencesButtonPressed:(id)sender
 {
-
+    self.preferencesWindowController = [[PreferencesWindowController alloc] init];
+    [self.preferencesWindowController showWindow:nil];
+    self.preferencesWindowController.window.delegate = self;
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 - (IBAction)activateButtonPressed:(id)sender
@@ -93,7 +113,17 @@
     id window = [notification object];
     if (self.aboutWindowController.window == window) {
         self.aboutWindowController = nil;
+    } else if (self.preferencesWindowController.window == window) {
+        self.preferencesWindowController = nil;
     }
+}
+
+
+
+#pragma mark - NSMenuDelegate
+- (void)menuDidClose:(NSMenu *)menu
+{
+    ((CustomStatusView *)self.statusItem.view).highlighted = NO;
 }
 
 
@@ -110,6 +140,9 @@
     
     // Update labels
     self.activateButton.title = NSLocalizedString(@"Deactivate", nil);
+
+    self.statusItem.title = NSLocalizedString(@"menu bar title - active", nil);
+    ((CustomStatusView *)self.statusItem.view).active = YES;
     
     // Create periodic update timer
     self.lastInteractionTime = [NSDate timeIntervalSinceReferenceDate];
@@ -129,6 +162,9 @@
     
     // Update labels
     self.activateButton.title = NSLocalizedString(@"Activate", nil);
+    ((CustomStatusView *)self.statusItem.view).active = NO;
+
+    self.statusItem.title = NSLocalizedString(@"menu bar title - unactive", nil);
     
     // Stop timer
     [self.timer invalidate];
@@ -139,19 +175,20 @@
 #pragma mark - Timer methods
 - (void)update:(NSTimer *)timer
 {
+    Preferences *preferences = [Preferences sharedPreferences];
     NSLog(@"%i - isWalking", self.isWalking);
-    NSLog(@"%i - last interaction time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= self.preferences.timeDurationBetweenWalks, self.lastInteractionTime);
-    NSLog(@"%i - last walk time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= self.preferences.timeDurationBetweenWalks, self.lastWalkTime);
+    NSLog(@"%i - last interaction time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.timeDurationBetweenWalks, self.lastInteractionTime);
+    NSLog(@"%i - last walk time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= preferences.timeDurationBetweenWalks, self.lastWalkTime);
 
     // If the time since the user last touched the computer is more than the time between walks, interperet it as a walk
     if (!self.isWalking
-        && [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= self.preferences.timeDurationBetweenWalks) {
+        && [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.timeDurationBetweenWalks) {
         self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
     }
 
     // If the time since the user last went for a walk is more than the time between walks, tell the user to go for a walk
     if (!self.isWalking
-        && [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= self.preferences.timeDurationBetweenWalks) {
+        && [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= preferences.timeDurationBetweenWalks) {
         [self beginWalk];
     }
 }
@@ -169,13 +206,14 @@
 
 - (void)beginWalk
 {
+    Preferences *preferences = [Preferences sharedPreferences];
     // UI updates
     [self.speechSynthesizer startSpeakingString:NSLocalizedString(@"You should go for a walk", nil)];
     self.previousBrightness = [Screen getBrightness];
     [Screen adjustBrightness:0.0f];
 
     self.isWalking = YES;
-    self.walkTimer = [NSTimer scheduledTimerWithTimeInterval:self.preferences.timeDurationOfWalk
+    self.walkTimer = [NSTimer scheduledTimerWithTimeInterval:preferences.timeDurationOfWalk
                                      target:self
                                    selector:@selector(endWalk:)
                                    userInfo:nil
