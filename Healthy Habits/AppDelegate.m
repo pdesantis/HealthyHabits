@@ -64,6 +64,12 @@
     self.aboutWindowController = [[AboutWindowController alloc] init];
     [self.aboutWindowController showWindow:nil];
     self.aboutWindowController.window.delegate = self;
+    [NSApp activateIgnoringOtherApps:YES];
+}
+
+- (IBAction)preferencesButtonPressed:(id)sender
+{
+
 }
 
 - (IBAction)activateButtonPressed:(id)sender
@@ -81,11 +87,13 @@
 }
 
 
-
 #pragma mark - NSWindowDelegate
 - (void)windowWillClose:(NSNotification *)notification
 {
-    self.aboutWindowController = nil;
+    id window = [notification object];
+    if (self.aboutWindowController.window == window) {
+        self.aboutWindowController = nil;
+    }
 }
 
 
@@ -104,7 +112,13 @@
     self.activateButton.title = NSLocalizedString(@"Deactivate", nil);
     
     // Create periodic update timer
-    [self setupTimer];
+    self.lastInteractionTime = [NSDate timeIntervalSinceReferenceDate];
+    self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:kTimerInterval
+                                                  target:self
+                                                selector:@selector(update:)
+                                                userInfo:nil
+                                                 repeats:YES];
 }
 
 - (void)deactivate
@@ -118,17 +132,6 @@
     
     // Stop timer
     [self.timer invalidate];
-}
-
-- (void)setupTimer
-{
-    self.lastInteractionTime = [NSDate timeIntervalSinceReferenceDate];
-    self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:kTimerInterval
-                                                  target:self
-                                                selector:@selector(update:)
-                                                userInfo:nil
-                                                 repeats:YES];
 }
 
 
