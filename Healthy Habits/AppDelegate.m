@@ -25,9 +25,9 @@
 @property (strong, nonatomic) NSTimer *walkTimer;
 @property (strong, nonatomic) NSSpeechSynthesizer *speechSynthesizer;
 
-@property (assign, nonatomic) NSTimeInterval lastWalkTime;
+@property (assign, nonatomic) NSTimeInterval lastBreakTime;
 @property (assign, nonatomic) NSTimeInterval lastInteractionTime;
-@property (assign, nonatomic) BOOL isWalking;
+@property (assign, nonatomic) BOOL isOnBreak;
 @property (assign, nonatomic) float previousBrightness;
 
 @property (strong, nonatomic) AboutWindowController *aboutWindowController;
@@ -44,6 +44,14 @@
                                                               kShowPreferencesAtStartKey: [NSNumber numberWithBool:kDefaultShowPreferencesAtStart],
                                                               kDurationBetweenBreaksKey: [NSNumber numberWithInteger:kDefaultTimeDurationBetweenBreaks],
                                                               kBreakDurationKey: [NSNumber numberWithInteger:kDefaultTimeDurationOfBreak] }];
+
+    if ([Preferences sharedPreferences].showPreferencesAtStart) {
+        [self preferencesButtonPressed:nil];
+    }
+
+    if ([Preferences sharedPreferences].activateAtStart) {
+        [self activate];
+    }
 }
 
 - (void)awakeFromNib
@@ -145,8 +153,9 @@
     ((CustomStatusView *)self.statusItem.view).active = YES;
     
     // Create periodic update timer
+    [self.timer invalidate];
     self.lastInteractionTime = [NSDate timeIntervalSinceReferenceDate];
-    self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
+    self.lastBreakTime = [NSDate timeIntervalSinceReferenceDate];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:kTimerInterval
                                                   target:self
                                                 selector:@selector(update:)
@@ -176,19 +185,19 @@
 - (void)update:(NSTimer *)timer
 {
     Preferences *preferences = [Preferences sharedPreferences];
-    NSLog(@"%i - isWalking", self.isWalking);
+    NSLog(@"%i - isWalking", self.isOnBreak);
     NSLog(@"%i - last interaction time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.durationBetweenBreaks, self.lastInteractionTime);
-    NSLog(@"%i - last walk time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= preferences.durationBetweenBreaks, self.lastWalkTime);
+    NSLog(@"%i - last walk time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastBreakTime >= preferences.durationBetweenBreaks, self.lastBreakTime);
 
     // If the time since the user last touched the computer is more than the time between walks, interperet it as a walk
-    if (!self.isWalking
+    if (!self.isOnBreak
         && [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.durationBetweenBreaks) {
-        self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
+        self.lastBreakTime = [NSDate timeIntervalSinceReferenceDate];
     }
 
     // If the time since the user last went for a walk is more than the time between walks, tell the user to go for a walk
-    if (!self.isWalking
-        && [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= preferences.durationBetweenBreaks) {
+    if (!self.isOnBreak
+        && [NSDate timeIntervalSinceReferenceDate] - self.lastBreakTime >= preferences.durationBetweenBreaks) {
         [self beginBreak];
     }
 }
@@ -199,8 +208,8 @@
     [self.speechSynthesizer startSpeakingString:NSLocalizedString(@"Welcome back", nil)];
     [Screen adjustBrightness:self.previousBrightness];
 
-    self.isWalking = NO;
-    self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
+    self.isOnBreak = NO;
+    self.lastBreakTime = [NSDate timeIntervalSinceReferenceDate];
 }
 
 
@@ -212,7 +221,7 @@
     self.previousBrightness = [Screen getBrightness];
     [Screen adjustBrightness:0.0f];
 
-    self.isWalking = YES;
+    self.isOnBreak = YES;
     self.walkTimer = [NSTimer scheduledTimerWithTimeInterval:preferences.breakDuration
                                      target:self
                                    selector:@selector(endBreak:)
