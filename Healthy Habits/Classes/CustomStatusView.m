@@ -37,7 +37,7 @@
 
 - (void)mouseUp:(NSEvent *)theEvent
 {
-    if ([theEvent modifierFlags] & NSControlKeyMask) {
+    if ([theEvent modifierFlags] & (NSControlKeyMask | NSCommandKeyMask)) {
         [self sendRightAction];
     } else if (!self.highlighted) {
         [NSApp sendAction:self.action to:self.target from:self];
