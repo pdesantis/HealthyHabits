@@ -8,12 +8,21 @@
 
 #import "Preferences.h"
 
+// Preferences keys
+NSString * const kStartAtLoginKey = @"startAtLogin";
+NSString * const kActivateAtStartKey = @"activateAtStart";
+NSString * const kShowPreferencesAtStartKey = @"showPreferencesAtStart";
+NSString * const kBreakDurationKey = @"breakDuration";
+NSString * const kDurationBetweenBreaksKey = @"durationBetweenBreaks";
+
+// Default Preference values
+BOOL const kDefaultStartAtLogin = YES;
+BOOL const kDefaultActivateAtStart = YES;
+BOOL const kDefaultShowPreferencesAtStart = YES;
+NSInteger const kDefaultTimeDurationBetweenBreaks = 60 * 20;
+NSInteger const kDefaultTimeDurationOfBreak = 60 * 5;
+
 @implementation Preferences
-@dynamic shouldActivateOnLaunch;
-@dynamic shouldSpeak;
-@dynamic shouldStartOnLogin;
-@dynamic timeDurationBetweenWalks;
-@dynamic timeDurationOfWalk;
 
 + (instancetype)sharedPreferences
 {
@@ -21,71 +30,33 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[Preferences alloc] init];
+        [sharedInstance load];
     });
     return sharedInstance;
 }
 
-- (BOOL)shouldActivateOnLaunch
+- (void)load
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"shouldActivateOnLaunch"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    self.startAtLogin = [defaults boolForKey:kStartAtLoginKey];
+    self.activateAtStart = [defaults boolForKey:kActivateAtStartKey];
+    self.showPreferencesAtStart = [defaults boolForKey:kShowPreferencesAtStartKey];
+    self.breakDuration = [defaults integerForKey:kBreakDurationKey];
+    self.durationBetweenBreaks = [defaults integerForKey:kDurationBetweenBreaksKey];
 }
 
-- (void)setShouldActivateOnLaunch:(BOOL)shouldActivateOnLaunch
+- (void)save
 {
-    [[NSUserDefaults standardUserDefaults] setBool:shouldActivateOnLaunch forKey:@"shouldActivateOnLaunch"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-- (BOOL)shouldSpeak
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"shouldSpeak"];
-}
+    [defaults setBool:self.startAtLogin forKey:kStartAtLoginKey];
+    [defaults setBool:self.activateAtStart forKey:kActivateAtStartKey];
+    [defaults setBool:self.showPreferencesAtStart forKey:kShowPreferencesAtStartKey];
+    [defaults setInteger:self.breakDuration forKey:kBreakDurationKey];
+    [defaults setInteger:self.durationBetweenBreaks forKey:kDurationBetweenBreaksKey];
 
-
-
-- (void)setShouldSpeak:(BOOL)shouldSpeak
-{
-    [[NSUserDefaults standardUserDefaults] setBool:shouldSpeak forKey:@"shouldSpeak"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (BOOL)shouldStartOnLogin
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"shouldStartOnLogin"];
-}
-
-
-
-- (void)setShouldStartOnLogin:(BOOL)shouldStartOnLogin
-{
-    [[NSUserDefaults standardUserDefaults] setBool:shouldStartOnLogin forKey:@"shouldStartOnLogin"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
-
-- (NSInteger)timeDurationBetweenWalks
-{
-    return [[NSUserDefaults standardUserDefaults] integerForKey:@"timeDurationBetweenWalks"];
-}
-
-- (void)setTimeDurationBetweenWalks:(NSInteger)timeDurationBetweenWalks
-{
-    [[NSUserDefaults standardUserDefaults] setInteger:timeDurationBetweenWalks forKey:@"timeDurationBetweenWalks"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-
-
-- (NSInteger)timeDurationOfWalk
-{
-    return [[NSUserDefaults standardUserDefaults] integerForKey:@"timeDurationOfWalk"];
-}
-
-- (void)setTimeDurationOfWalk:(NSInteger)timeDurationOfWalk
-{
-    [[NSUserDefaults standardUserDefaults] setInteger:timeDurationOfWalk forKey:@"timeDurationOfWalk"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [defaults synchronize];
 }
 
 @end

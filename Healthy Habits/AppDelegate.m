@@ -39,11 +39,11 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"shouldActivateOnLaunch": [NSNumber numberWithBool:kDefaultShouldActivateOnLaunch],
-                                                              @"shouldSpeak": [NSNumber numberWithBool:kDefaultShouldSpeak],
-                                                              @"shouldStartOnLogin": [NSNumber numberWithInteger:kDefaultShouldStartOnLogin],
-                                                              @"timeDurationBetweenBreaks": [NSNumber numberWithInteger:kDefaultTimeDurationBetweenBreaks],
-                                                              @"timeDurationOfBreak": [NSNumber numberWithInteger:kDefaultTimeDurationOfBreak] }];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{kActivateAtStartKey: [NSNumber numberWithBool:kDefaultActivateAtStart],
+                                                              kStartAtLoginKey: [NSNumber numberWithInteger:kDefaultStartAtLogin],
+                                                              kShowPreferencesAtStartKey: [NSNumber numberWithBool:kDefaultShowPreferencesAtStart],
+                                                              kDurationBetweenBreaksKey: [NSNumber numberWithInteger:kDefaultTimeDurationBetweenBreaks],
+                                                              kBreakDurationKey: [NSNumber numberWithInteger:kDefaultTimeDurationOfBreak] }];
 }
 
 - (void)awakeFromNib
@@ -177,18 +177,18 @@
 {
     Preferences *preferences = [Preferences sharedPreferences];
     NSLog(@"%i - isWalking", self.isWalking);
-    NSLog(@"%i - last interaction time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.timeDurationBetweenWalks, self.lastInteractionTime);
-    NSLog(@"%i - last walk time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= preferences.timeDurationBetweenWalks, self.lastWalkTime);
+    NSLog(@"%i - last interaction time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.durationBetweenBreaks, self.lastInteractionTime);
+    NSLog(@"%i - last walk time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= preferences.durationBetweenBreaks, self.lastWalkTime);
 
     // If the time since the user last touched the computer is more than the time between walks, interperet it as a walk
     if (!self.isWalking
-        && [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.timeDurationBetweenWalks) {
+        && [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.durationBetweenBreaks) {
         self.lastWalkTime = [NSDate timeIntervalSinceReferenceDate];
     }
 
     // If the time since the user last went for a walk is more than the time between walks, tell the user to go for a walk
     if (!self.isWalking
-        && [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= preferences.timeDurationBetweenWalks) {
+        && [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= preferences.durationBetweenBreaks) {
         [self beginBreak];
     }
 }
@@ -213,7 +213,7 @@
     [Screen adjustBrightness:0.0f];
 
     self.isWalking = YES;
-    self.walkTimer = [NSTimer scheduledTimerWithTimeInterval:preferences.timeDurationOfWalk
+    self.walkTimer = [NSTimer scheduledTimerWithTimeInterval:preferences.breakDuration
                                      target:self
                                    selector:@selector(endBreak:)
                                    userInfo:nil

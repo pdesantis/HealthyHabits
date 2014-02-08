@@ -7,9 +7,14 @@
 //
 
 #import "PreferencesWindowController.h"
+#import "Preferences.h"
 
 @interface PreferencesWindowController ()
 @property (weak) IBOutlet NSImageView *iconImageView;
+
+@property (weak) IBOutlet NSButton *startAtLoginCheckbox;
+@property (weak) IBOutlet NSButton *activateAtStartCheckbox;
+@property (weak) IBOutlet NSButton *showPreferencesAtStartCheckbox;
 
 @property (weak) IBOutlet NSTextField *durationBetweenBreakLabel;
 @property (weak) IBOutlet NSSlider *durationBetweenBreakSlider;
@@ -29,6 +34,13 @@
 {
     self.iconImageView.image = [NSApp applicationIconImage];
 
+    Preferences *prefs = [Preferences sharedPreferences];
+    self.startAtLoginCheckbox.state = prefs.startAtLogin ? NSOnState : NSOffState;
+    self.activateAtStartCheckbox.state = prefs.activateAtStart ? NSOnState : NSOffState;
+    self.showPreferencesAtStartCheckbox.state = prefs.showPreferencesAtStart ? NSOnState : NSOffState;
+    [self.durationBetweenBreakSlider setIntegerValue:prefs.durationBetweenBreaks];
+    [self.breakDurationSlider setIntegerValue:prefs.breakDuration];
+
     [self updateLabelForSlider:self.durationBetweenBreakSlider];
     [self updateLabelForSlider:self.breakDurationSlider];
 }
@@ -43,14 +55,36 @@
 
 
 #pragma mark - IBAction
-- (IBAction)changeDurationBetweenBreak:(id)sender
+- (IBAction)changeDurationBetweenBreak:(NSSlider *)sender
 {
+    [Preferences sharedPreferences].durationBetweenBreaks = [sender integerValue];
+    [[Preferences sharedPreferences] save];
     [self updateLabelForSlider:sender];
 }
 
-- (IBAction)changeBreakDuration:(id)sender
+- (IBAction)changeBreakDuration:(NSSlider *)sender
 {
+    [Preferences sharedPreferences].breakDuration = [sender integerValue];
+    [[Preferences sharedPreferences] save];
     [self updateLabelForSlider:sender];
+}
+
+- (IBAction)toggleStartAtLogin:(NSButton *)sender
+{
+    [Preferences sharedPreferences].startAtLogin = sender.state == NSOnState;
+    [[Preferences sharedPreferences] save];
+}
+
+- (IBAction)toggleActivateAtStart:(NSButton *)sender
+{
+    [Preferences sharedPreferences].activateAtStart = sender.state == NSOnState;
+    [[Preferences sharedPreferences] save];
+}
+
+- (IBAction)toggleShowPreferences:(NSButton *)sender
+{
+    [Preferences sharedPreferences].showPreferencesAtStart = sender.state == NSOnState;
+    [[Preferences sharedPreferences] save];
 }
 
 
