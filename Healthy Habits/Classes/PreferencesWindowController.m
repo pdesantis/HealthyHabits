@@ -38,8 +38,8 @@
     self.startAtLoginCheckbox.state = prefs.startAtLogin ? NSOnState : NSOffState;
     self.activateAtStartCheckbox.state = prefs.activateAtStart ? NSOnState : NSOffState;
     self.showPreferencesAtStartCheckbox.state = prefs.showPreferencesAtStart ? NSOnState : NSOffState;
-    [self.durationBetweenBreakSlider setIntegerValue:prefs.durationBetweenBreaks];
-    [self.breakDurationSlider setIntegerValue:prefs.breakDuration];
+    [self.durationBetweenBreakSlider setIntegerValue:(prefs.durationBetweenBreaks / 60)];
+    [self.breakDurationSlider setIntegerValue:(prefs.breakDuration / 60)];
 
     [self updateLabelForSlider:self.durationBetweenBreakSlider];
     [self updateLabelForSlider:self.breakDurationSlider];
@@ -57,14 +57,14 @@
 #pragma mark - IBAction
 - (IBAction)changeDurationBetweenBreak:(NSSlider *)sender
 {
-    [Preferences sharedPreferences].durationBetweenBreaks = [sender integerValue];
+    [Preferences sharedPreferences].durationBetweenBreaks = [sender integerValue] * 60;
     [[Preferences sharedPreferences] save];
     [self updateLabelForSlider:sender];
 }
 
 - (IBAction)changeBreakDuration:(NSSlider *)sender
 {
-    [Preferences sharedPreferences].breakDuration = [sender integerValue];
+    [Preferences sharedPreferences].breakDuration = [sender integerValue] * 60;
     [[Preferences sharedPreferences] save];
     [self updateLabelForSlider:sender];
 }
