@@ -42,8 +42,8 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"shouldActivateOnLaunch": [NSNumber numberWithBool:kDefaultShouldActivateOnLaunch],
                                                               @"shouldSpeak": [NSNumber numberWithBool:kDefaultShouldSpeak],
                                                               @"shouldStartOnLogin": [NSNumber numberWithInteger:kDefaultShouldStartOnLogin],
-                                                              @"timeDurationBetweenWalks": [NSNumber numberWithInteger:kDefaultTimeDurationBetweenWalks],
-                                                              @"timeDurationOfWalk": [NSNumber numberWithInteger:kDefaultTimeDurationOfWalk] }];
+                                                              @"timeDurationBetweenBreaks": [NSNumber numberWithInteger:kDefaultTimeDurationBetweenBreaks],
+                                                              @"timeDurationOfBreak": [NSNumber numberWithInteger:kDefaultTimeDurationOfBreak] }];
 }
 
 - (void)awakeFromNib
@@ -189,11 +189,11 @@
     // If the time since the user last went for a walk is more than the time between walks, tell the user to go for a walk
     if (!self.isWalking
         && [NSDate timeIntervalSinceReferenceDate] - self.lastWalkTime >= preferences.timeDurationBetweenWalks) {
-        [self beginWalk];
+        [self beginBreak];
     }
 }
 
-- (void)endWalk:(NSTimer *)timer
+- (void)endBreak:(NSTimer *)timer
 {
     // UI updates
     [self.speechSynthesizer startSpeakingString:NSLocalizedString(@"Welcome back", nil)];
@@ -204,7 +204,7 @@
 }
 
 
-- (void)beginWalk
+- (void)beginBreak
 {
     Preferences *preferences = [Preferences sharedPreferences];
     // UI updates
@@ -215,7 +215,7 @@
     self.isWalking = YES;
     self.walkTimer = [NSTimer scheduledTimerWithTimeInterval:preferences.timeDurationOfWalk
                                      target:self
-                                   selector:@selector(endWalk:)
+                                   selector:@selector(endBreak:)
                                    userInfo:nil
                                     repeats:NO];
 }
