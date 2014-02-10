@@ -22,8 +22,6 @@
 
 @property (strong, nonatomic) id inputEventHandler;
 @property (strong, nonatomic) NSTimer *timer;
-@property (strong, nonatomic) NSTimer *walkTimer;
-@property (strong, nonatomic) NSSpeechSynthesizer *speechSynthesizer;
 
 @property (assign, nonatomic) NSTimeInterval lastBreakTime;
 @property (assign, nonatomic) NSTimeInterval lastInteractionTime;
@@ -189,13 +187,13 @@
     NSLog(@"%i - last interaction time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.durationBetweenBreaks, self.lastInteractionTime);
     NSLog(@"%i - last walk time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastBreakTime >= preferences.durationBetweenBreaks, self.lastBreakTime);
 
-    // If the time since the user last touched the computer is more than the time between walks, interperet it as a walk
+    // If the time since the user last touched the computer is more than the time between breaks, interperet it as the user is currently taking a break
     if (!self.isOnBreak
         && [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.durationBetweenBreaks) {
         self.lastBreakTime = [NSDate timeIntervalSinceReferenceDate];
     }
 
-    // If the time since the user last went for a walk is more than the time between walks, tell the user to go for a walk
+    // If the time since the user last took a break is more than the time between breaks, tell the user to take a break
     if (!self.isOnBreak
         && [NSDate timeIntervalSinceReferenceDate] - self.lastBreakTime >= preferences.durationBetweenBreaks) {
         [self beginBreak];
@@ -205,7 +203,6 @@
 - (void)endBreak:(NSTimer *)timer
 {
     // UI updates
-    [self.speechSynthesizer startSpeakingString:NSLocalizedString(@"Welcome back", nil)];
     [Screen adjustBrightness:self.previousBrightness];
 
     self.isOnBreak = NO;
@@ -217,16 +214,14 @@
 {
     Preferences *preferences = [Preferences sharedPreferences];
     // UI updates
-    [self.speechSynthesizer startSpeakingString:NSLocalizedString(@"You should go for a walk", nil)];
     self.previousBrightness = [Screen getBrightness];
     [Screen adjustBrightness:0.0f];
 
     self.isOnBreak = YES;
-    self.walkTimer = [NSTimer scheduledTimerWithTimeInterval:preferences.breakDuration
-                                     target:self
-                                   selector:@selector(endBreak:)
-                                   userInfo:nil
-                                    repeats:NO];
+
+    [self performSelector:@selector(endBreak:)
+               withObject:nil
+               afterDelay:preferences.breakDuration];
 }
 
 @end
