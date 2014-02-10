@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA31A03818A8B78D00C7EB83 /* BreakWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA31A03618A8B78D00C7EB83 /* BreakWindowController.m */; };
+		FA31A03918A8B78D00C7EB83 /* BreakWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA31A03618A8B78D00C7EB83 /* BreakWindowController.m */; };
+		FA31A03A18A8B78D00C7EB83 /* BreakWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA31A03718A8B78D00C7EB83 /* BreakWindowController.xib */; };
+		FA31A03B18A8B78D00C7EB83 /* BreakWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA31A03718A8B78D00C7EB83 /* BreakWindowController.xib */; };
 		FA66DC8F17C9CE1D0010F2A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA66DC8E17C9CE1D0010F2A6 /* Localizable.strings */; };
 		FA66DC9A17C9F0110010F2A6 /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA66DC9817C9F0110010F2A6 /* AboutWindowController.m */; };
 		FA66DC9B17C9F0110010F2A6 /* AboutWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA66DC9917C9F0110010F2A6 /* AboutWindowController.xib */; };
@@ -47,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA31A03518A8B78D00C7EB83 /* BreakWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BreakWindowController.h; path = Classes/BreakWindowController.h; sourceTree = "<group>"; };
+		FA31A03618A8B78D00C7EB83 /* BreakWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BreakWindowController.m; path = Classes/BreakWindowController.m; sourceTree = "<group>"; };
+		FA31A03718A8B78D00C7EB83 /* BreakWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BreakWindowController.xib; path = Classes/BreakWindowController.xib; sourceTree = "<group>"; };
 		FA66DC8E17C9CE1D0010F2A6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FA66DC9717C9F0110010F2A6 /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutWindowController.h; path = About/AboutWindowController.h; sourceTree = "<group>"; };
 		FA66DC9817C9F0110010F2A6 /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutWindowController.m; path = About/AboutWindowController.m; sourceTree = "<group>"; };
@@ -169,6 +176,9 @@
 		FABD21F117B2B26A0082C7A7 /* Healthy Habits */ = {
 			isa = PBXGroup;
 			children = (
+				FA31A03518A8B78D00C7EB83 /* BreakWindowController.h */,
+				FA31A03618A8B78D00C7EB83 /* BreakWindowController.m */,
+				FA31A03718A8B78D00C7EB83 /* BreakWindowController.xib */,
 				FADF37E718A4BDFC00E4A224 /* Preferences */,
 				FA66DC9317C9EFB00010F2A6 /* About */,
 				FA72141A17CA9D4100D1DC2A /* Models */,
@@ -311,6 +321,7 @@
 				FADF37ED18A4BE3400E4A224 /* PreferencesWindowController.xib in Resources */,
 				FABD21F617B2B26A0082C7A7 /* InfoPlist.strings in Resources */,
 				FADF37F418A4D22100E4A224 /* Images.xcassets in Resources */,
+				FA31A03A18A8B78D00C7EB83 /* BreakWindowController.xib in Resources */,
 				FABD21FC17B2B26A0082C7A7 /* Credits.rtf in Resources */,
 				FABD220217B2B26B0082C7A7 /* MainMenu.xib in Resources */,
 				FA66DC8F17C9CE1D0010F2A6 /* Localizable.strings in Resources */,
@@ -325,6 +336,7 @@
 				FADF37F518A4D22100E4A224 /* Images.xcassets in Resources */,
 				FADF37EE18A4BE3400E4A224 /* PreferencesWindowController.xib in Resources */,
 				FABD221317B2B26B0082C7A7 /* InfoPlist.strings in Resources */,
+				FA31A03B18A8B78D00C7EB83 /* BreakWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABD21F817B2B26A0082C7A7 /* main.m in Sources */,
+				FA31A03818A8B78D00C7EB83 /* BreakWindowController.m in Sources */,
 				FABD21FF17B2B26A0082C7A7 /* AppDelegate.m in Sources */,
 				FABD222517B328310082C7A7 /* Constants.m in Sources */,
 				FADF37EB18A4BE3400E4A224 /* PreferencesWindowController.m in Sources */,
@@ -367,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABD221617B2B26B0082C7A7 /* Healthy_HabitsTests.m in Sources */,
+				FA31A03918A8B78D00C7EB83 /* BreakWindowController.m in Sources */,
 				FADF37F218A4CC4B00E4A224 /* CustomStatusView.m in Sources */,
 				FABD222E17B32DA60082C7A7 /* Screen.m in Sources */,
 				FADF37EC18A4BE3400E4A224 /* PreferencesWindowController.m in Sources */,

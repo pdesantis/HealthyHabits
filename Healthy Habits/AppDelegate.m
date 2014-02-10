@@ -8,12 +8,13 @@
 
 #import "AppDelegate.h"
 #import "AboutWindowController.h"
+#import "BreakWindowController.h"
 #import "CustomStatusView.h"
 #import "Preferences.h"
 #import "PreferencesWindowController.h"
 #import "Screen.h"
 
-@interface AppDelegate () <NSMenuDelegate, NSWindowDelegate>
+@interface AppDelegate () <BreakWindowControllerDelegate, NSMenuDelegate, NSWindowDelegate>
 
 @property (weak, nonatomic) IBOutlet NSMenu *menu;
 @property (weak, nonatomic) IBOutlet NSMenuItem *activateButton;
@@ -23,12 +24,14 @@
 @property (strong, nonatomic) id inputEventHandler;
 @property (strong, nonatomic) NSTimer *timer;
 
+@property (assign, nonatomic) BOOL isOnBreak;
+
 @property (assign, nonatomic) NSTimeInterval lastBreakTime;
 @property (assign, nonatomic) NSTimeInterval lastInteractionTime;
-@property (assign, nonatomic) BOOL isOnBreak;
 @property (assign, nonatomic) float previousBrightness;
 
 @property (strong, nonatomic) AboutWindowController *aboutWindowController;
+@property (strong, nonatomic) BreakWindowController *breakWindowController;
 @property (strong, nonatomic) PreferencesWindowController *preferencesWindowController;
 
 @end
@@ -119,6 +122,8 @@
     id window = [notification object];
     if (self.aboutWindowController.window == window) {
         self.aboutWindowController = nil;
+    } else if (self.breakWindowController.window == window) {
+        self.breakWindowController = nil;
     } else if (self.preferencesWindowController.window == window) {
         self.preferencesWindowController = nil;
     }
@@ -137,8 +142,6 @@
 #pragma mark - Start / Stop methods
 - (void)activate
 {
-    self.lastInteractionTime = [NSDate timeIntervalSinceReferenceDate];
-    
     // Create event handler for all input events
     self.inputEventHandler = [NSEvent addGlobalMonitorForEventsMatchingMask:NSMouseMovedMask handler:^(NSEvent *event){
         self.lastInteractionTime = [NSDate timeIntervalSinceReferenceDate];
@@ -182,46 +185,78 @@
 #pragma mark - Timer methods
 - (void)update:(NSTimer *)timer
 {
+    // If we're on break, or prompting the user to go on break, do nothing
+    if (self.isOnBreak || self.breakWindowController) {
+        return;
+    }
+
     Preferences *preferences = [Preferences sharedPreferences];
-    NSLog(@"%i - isWalking", self.isOnBreak);
-    NSLog(@"%i - last interaction time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.durationBetweenBreaks, self.lastInteractionTime);
-    NSLog(@"%i - last walk time, %f", [NSDate timeIntervalSinceReferenceDate] - self.lastBreakTime >= preferences.durationBetweenBreaks, self.lastBreakTime);
 
     // If the time since the user last touched the computer is more than the time between breaks, interperet it as the user is currently taking a break
-    if (!self.isOnBreak
-        && [NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.durationBetweenBreaks) {
+    if ([NSDate timeIntervalSinceReferenceDate] - self.lastInteractionTime >= preferences.durationBetweenBreaks) {
         self.lastBreakTime = [NSDate timeIntervalSinceReferenceDate];
     }
 
     // If the time since the user last took a break is more than the time between breaks, tell the user to take a break
-    if (!self.isOnBreak
-        && [NSDate timeIntervalSinceReferenceDate] - self.lastBreakTime >= preferences.durationBetweenBreaks) {
-        [self beginBreak];
+    if ([NSDate timeIntervalSinceReferenceDate] - self.lastBreakTime >= preferences.durationBetweenBreaks) {
+        [self promptForBreak];
     }
 }
 
-- (void)endBreak:(NSTimer *)timer
+
+
+#pragma mark - Break methods
+- (void)promptForBreak
 {
-    // UI updates
-    [Screen adjustBrightness:self.previousBrightness];
-
-    self.isOnBreak = NO;
-    self.lastBreakTime = [NSDate timeIntervalSinceReferenceDate];
+    BreakWindowController *breakWindowController = [[BreakWindowController alloc] init];
+    breakWindowController.delegate = self;
+    [breakWindowController showWindow:nil];
+    breakWindowController.window.delegate = self;
+    self.breakWindowController = breakWindowController;
+    [NSApp activateIgnoringOtherApps:YES];
+    [breakWindowController.window makeKeyAndOrderFront:nil];
 }
-
 
 - (void)beginBreak
 {
-    Preferences *preferences = [Preferences sharedPreferences];
+    self.isOnBreak = YES;
+
     // UI updates
     self.previousBrightness = [Screen getBrightness];
     [Screen adjustBrightness:0.0f];
 
-    self.isOnBreak = YES;
-
+    NSTimeInterval breakDuration = [Preferences sharedPreferences].breakDuration;
     [self performSelector:@selector(endBreak:)
                withObject:nil
-               afterDelay:preferences.breakDuration];
+               afterDelay:breakDuration];
+}
+
+- (void)endBreak:(NSTimer *)timer
+{
+    self.isOnBreak = NO;
+    self.lastBreakTime = [NSDate timeIntervalSinceReferenceDate];
+
+    // UI updates
+    if ([Screen getBrightness] == 0.0f) {
+        [Screen adjustBrightness:self.previousBrightness];
+    }
+}
+
+
+
+#pragma mark - BreakWindowControllerDelegate
+- (void)breakWindowControllerDidCancel:(BreakWindowController *)windowController
+{
+    // Skip this break
+    self.lastBreakTime = [NSDate timeIntervalSinceReferenceDate];
+    [windowController close];
+}
+
+- (void)breakWindowControllerDidAccept:(BreakWindowController *)windowController
+{
+    // Start the break!
+    [self beginBreak];
+    [windowController close];
 }
 
 @end
