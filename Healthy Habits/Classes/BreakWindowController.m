@@ -19,6 +19,12 @@
     return [self initWithWindowNibName:@"BreakWindowController"];
 }
 
+- (void)awakeFromNib
+{
+    self.window.collectionBehavior = NSWindowCollectionBehaviorCanJoinAllSpaces;
+    self.window.level = NSPopUpMenuWindowLevel;
+}
+
 - (IBAction)cancel:(id)sender
 {
     [self.delegate breakWindowControllerDidCancel:self];
