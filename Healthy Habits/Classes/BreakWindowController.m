@@ -19,20 +19,6 @@
     return [self initWithWindowNibName:@"BreakWindowController"];
 }
 
-- (void)awakeFromNib
-{
-    self.window.styleMask = NSBorderlessWindowMask;
-    [self.window setOpaque:NO];
-    self.window.backgroundColor = [NSColor clearColor];
-
-    NSView *view = self.window.contentView;
-    view.wantsLayer = YES;
-    view.layer.frame = view.frame;
-    view.layer.cornerRadius = 3.0f;
-    view.layer.masksToBounds = YES;
-    view.layer.backgroundColor = [NSColor windowBackgroundColor].CGColor;
-}
-
 - (IBAction)cancel:(id)sender
 {
     [self.delegate breakWindowControllerDidCancel:self];
