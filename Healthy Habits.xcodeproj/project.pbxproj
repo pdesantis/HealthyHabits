@@ -54,6 +54,7 @@
 		FA31A03518A8B78D00C7EB83 /* BreakWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BreakWindowController.h; path = Classes/BreakWindowController.h; sourceTree = "<group>"; };
 		FA31A03618A8B78D00C7EB83 /* BreakWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BreakWindowController.m; path = Classes/BreakWindowController.m; sourceTree = "<group>"; };
 		FA31A03718A8B78D00C7EB83 /* BreakWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BreakWindowController.xib; path = Classes/BreakWindowController.xib; sourceTree = "<group>"; };
+		FA64DA3118A8D6E100428183 /* Healthy Habits.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Healthy Habits.entitlements"; sourceTree = "<group>"; };
 		FA66DC8E17C9CE1D0010F2A6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		FA66DC9717C9F0110010F2A6 /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutWindowController.h; path = About/AboutWindowController.h; sourceTree = "<group>"; };
 		FA66DC9817C9F0110010F2A6 /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutWindowController.m; path = About/AboutWindowController.m; sourceTree = "<group>"; };
@@ -176,6 +177,7 @@
 		FABD21F117B2B26A0082C7A7 /* Healthy Habits */ = {
 			isa = PBXGroup;
 			children = (
+				FA64DA3118A8D6E100428183 /* Healthy Habits.entitlements */,
 				FA31A03518A8B78D00C7EB83 /* BreakWindowController.h */,
 				FA31A03618A8B78D00C7EB83 /* BreakWindowController.m */,
 				FA31A03718A8B78D00C7EB83 /* BreakWindowController.xib */,
@@ -294,6 +296,15 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Patrick DeSantis";
+				TargetAttributes = {
+					FABD21E717B2B26A0082C7A7 = {
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = FABD21E317B2B26A0082C7A7 /* Build configuration list for PBXProject "Healthy Habits" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -495,6 +506,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Healthy Habits/Healthy Habits.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Healthy Habits/Healthy Habits-Prefix.pch";
@@ -508,6 +521,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Healthy Habits/Healthy Habits.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Healthy Habits/Healthy Habits-Prefix.pch";
