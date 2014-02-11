@@ -17,8 +17,8 @@ NSString * const kBreakDurationKey = @"breakDuration";
 NSString * const kDurationBetweenBreaksKey = @"durationBetweenBreaks";
 
 // Default Preference values
-BOOL const kDefaultStartAtLogin = YES;
-BOOL const kDefaultActivateAtStart = NO;
+BOOL const kDefaultStartAtLogin = NO;
+BOOL const kDefaultActivateAtStart = YES;
 BOOL const kDefaultShowPreferencesAtStart = YES;
 NSInteger const kDefaultTimeDurationBetweenBreaks = 60 * 20;
 NSInteger const kDefaultTimeDurationOfBreak = 60 * 5;
