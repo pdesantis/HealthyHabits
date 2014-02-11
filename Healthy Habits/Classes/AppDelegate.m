@@ -36,6 +36,10 @@
 
 @end
 
+
+static NSTimeInterval const kTimerInterval = 1;
+
+
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification

@@ -9,6 +9,8 @@
 #import "Screen.h"
 #import <IOKit/graphics/IOGraphicsLib.h>
 
+CFStringRef const kDisplayBrightness = CFSTR(kIODisplayBrightnessKey);
+
 @implementation Screen
 
 + (CGDisplayErr)adjustBrightness:(float)brightness

@@ -24,7 +24,6 @@
 		FABD220B17B2B26B0082C7A7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABD21EB17B2B26A0082C7A7 /* Cocoa.framework */; };
 		FABD221317B2B26B0082C7A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FABD221117B2B26B0082C7A7 /* InfoPlist.strings */; };
 		FABD221617B2B26B0082C7A7 /* Healthy_HabitsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD221517B2B26B0082C7A7 /* Healthy_HabitsTests.m */; };
-		FABD222517B328310082C7A7 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD222417B328310082C7A7 /* Constants.m */; };
 		FABD222717B32B630082C7A7 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABD222617B32B630082C7A7 /* IOKit.framework */; };
 		FABD222D17B32DA60082C7A7 /* Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD222C17B32DA60082C7A7 /* Screen.m */; };
 		FABD222E17B32DA60082C7A7 /* Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = FABD222C17B32DA60082C7A7 /* Screen.m */; };
@@ -56,9 +55,9 @@
 		FA31A03718A8B78D00C7EB83 /* BreakWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BreakWindowController.xib; path = Classes/BreakWindowController.xib; sourceTree = "<group>"; };
 		FA64DA3118A8D6E100428183 /* Healthy Habits.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Healthy Habits.entitlements"; sourceTree = "<group>"; };
 		FA66DC8E17C9CE1D0010F2A6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		FA66DC9717C9F0110010F2A6 /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutWindowController.h; path = About/AboutWindowController.h; sourceTree = "<group>"; };
-		FA66DC9817C9F0110010F2A6 /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutWindowController.m; path = About/AboutWindowController.m; sourceTree = "<group>"; };
-		FA66DC9917C9F0110010F2A6 /* AboutWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutWindowController.xib; path = About/AboutWindowController.xib; sourceTree = "<group>"; };
+		FA66DC9717C9F0110010F2A6 /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutWindowController.h; path = Classes/AboutWindowController.h; sourceTree = "<group>"; };
+		FA66DC9817C9F0110010F2A6 /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutWindowController.m; path = Classes/AboutWindowController.m; sourceTree = "<group>"; };
+		FA66DC9917C9F0110010F2A6 /* AboutWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutWindowController.xib; path = Classes/AboutWindowController.xib; sourceTree = "<group>"; };
 		FABD21E817B2B26A0082C7A7 /* Healthy Habits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Healthy Habits.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABD21EB17B2B26A0082C7A7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FABD21EE17B2B26A0082C7A7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -69,8 +68,8 @@
 		FABD21F717B2B26A0082C7A7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FABD21F917B2B26A0082C7A7 /* Healthy Habits-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Healthy Habits-Prefix.pch"; sourceTree = "<group>"; };
 		FABD21FB17B2B26A0082C7A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		FABD21FD17B2B26A0082C7A7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		FABD21FE17B2B26A0082C7A7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FABD21FD17B2B26A0082C7A7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
+		FABD21FE17B2B26A0082C7A7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		FABD220117B2B26B0082C7A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		FABD220817B2B26B0082C7A7 /* Healthy HabitsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Healthy HabitsTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABD220917B2B26B0082C7A7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -78,8 +77,6 @@
 		FABD221217B2B26B0082C7A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FABD221417B2B26B0082C7A7 /* Healthy_HabitsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Healthy_HabitsTests.h; sourceTree = "<group>"; };
 		FABD221517B2B26B0082C7A7 /* Healthy_HabitsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Healthy_HabitsTests.m; sourceTree = "<group>"; };
-		FABD222317B328310082C7A7 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		FABD222417B328310082C7A7 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		FABD222617B32B630082C7A7 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		FABD222B17B32DA60082C7A7 /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Screen.h; path = Utilities/Screen.h; sourceTree = "<group>"; };
 		FABD222C17B32DA60082C7A7 /* Screen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Screen.m; path = Utilities/Screen.m; sourceTree = "<group>"; };
@@ -134,6 +131,25 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		FAA7328118A9D44500A47D2A /* Break */ = {
+			isa = PBXGroup;
+			children = (
+				FA31A03518A8B78D00C7EB83 /* BreakWindowController.h */,
+				FA31A03618A8B78D00C7EB83 /* BreakWindowController.m */,
+				FA31A03718A8B78D00C7EB83 /* BreakWindowController.xib */,
+			);
+			name = Break;
+			sourceTree = "<group>";
+		};
+		FAA7328218A9D45E00A47D2A /* Status View */ = {
+			isa = PBXGroup;
+			children = (
+				FADF37EF18A4CC4B00E4A224 /* CustomStatusView.h */,
+				FADF37F018A4CC4B00E4A224 /* CustomStatusView.m */,
+			);
+			name = "Status View";
+			sourceTree = "<group>";
+		};
 		FABD21DF17B2B26A0082C7A7 = {
 			isa = PBXGroup;
 			children = (
@@ -178,18 +194,15 @@
 			isa = PBXGroup;
 			children = (
 				FA64DA3118A8D6E100428183 /* Healthy Habits.entitlements */,
-				FA31A03518A8B78D00C7EB83 /* BreakWindowController.h */,
-				FA31A03618A8B78D00C7EB83 /* BreakWindowController.m */,
-				FA31A03718A8B78D00C7EB83 /* BreakWindowController.xib */,
-				FADF37E718A4BDFC00E4A224 /* Preferences */,
-				FA66DC9317C9EFB00010F2A6 /* About */,
-				FA72141A17CA9D4100D1DC2A /* Models */,
-				FABD222A17B32D640082C7A7 /* Utilities */,
 				FABD21FD17B2B26A0082C7A7 /* AppDelegate.h */,
 				FABD21FE17B2B26A0082C7A7 /* AppDelegate.m */,
-				FADF37EF18A4CC4B00E4A224 /* CustomStatusView.h */,
-				FADF37F018A4CC4B00E4A224 /* CustomStatusView.m */,
 				FABD220017B2B26B0082C7A7 /* MainMenu.xib */,
+				FA66DC9317C9EFB00010F2A6 /* About */,
+				FAA7328118A9D44500A47D2A /* Break */,
+				FA72141A17CA9D4100D1DC2A /* Models */,
+				FADF37E718A4BDFC00E4A224 /* Preferences */,
+				FAA7328218A9D45E00A47D2A /* Status View */,
+				FABD222A17B32D640082C7A7 /* Utilities */,
 				FABD21F217B2B26A0082C7A7 /* Supporting Files */,
 			);
 			path = "Healthy Habits";
@@ -198,8 +211,6 @@
 		FABD21F217B2B26A0082C7A7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FABD222317B328310082C7A7 /* Constants.h */,
-				FABD222417B328310082C7A7 /* Constants.m */,
 				FA66DC8E17C9CE1D0010F2A6 /* Localizable.strings */,
 				FABD21F317B2B26A0082C7A7 /* Healthy Habits-Info.plist */,
 				FABD21F417B2B26A0082C7A7 /* InfoPlist.strings */,
@@ -377,7 +388,6 @@
 				FABD21F817B2B26A0082C7A7 /* main.m in Sources */,
 				FA31A03818A8B78D00C7EB83 /* BreakWindowController.m in Sources */,
 				FABD21FF17B2B26A0082C7A7 /* AppDelegate.m in Sources */,
-				FABD222517B328310082C7A7 /* Constants.m in Sources */,
 				FADF37EB18A4BE3400E4A224 /* PreferencesWindowController.m in Sources */,
 				FABD222D17B32DA60082C7A7 /* Screen.m in Sources */,
 				FA66DC9A17C9F0110010F2A6 /* AboutWindowController.m in Sources */,

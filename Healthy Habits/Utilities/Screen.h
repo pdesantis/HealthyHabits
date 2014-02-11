@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern const CFStringRef kDisplayBrightness;
+
 @interface Screen : NSObject
 
 + (CGDisplayErr)adjustBrightness:(float)brightness;
