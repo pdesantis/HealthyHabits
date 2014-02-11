@@ -12,7 +12,6 @@
                 <outlet property="breakDurationSlider" destination="m2h-8W-YlZ" id="N2Y-kI-7rS"/>
                 <outlet property="durationBetweenBreakLabel" destination="PpP-mG-WZh" id="BuG-Np-lTI"/>
                 <outlet property="durationBetweenBreakSlider" destination="T4Q-BI-8be" id="MLL-75-HbO"/>
-                <outlet property="iconImageView" destination="p0Z-VK-d9T" id="9pn-8y-9ET"/>
                 <outlet property="showPreferencesAtStartCheckbox" destination="LD4-ql-nVf" id="xSP-Ox-Xvo"/>
                 <outlet property="startAtLoginCheckbox" destination="v3o-Nx-hGI" id="Ev9-BD-1om"/>
                 <outlet property="window" destination="1" id="3"/>
@@ -46,7 +45,7 @@
                             <constraint firstAttribute="width" constant="128" id="pPA-PY-q8m"/>
                             <constraint firstAttribute="height" constant="128" id="xea-IG-Wg7"/>
                         </constraints>
-                        <imageCell key="cell" controlSize="mini" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="tree" id="1Yo-M7-YyR"/>
+                        <imageCell key="cell" controlSize="mini" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="tree-color" id="1Yo-M7-YyR"/>
                     </imageView>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="e1S-n0-PxI">
                         <rect key="frame" x="166" y="398" width="296" height="34"/>
@@ -272,6 +271,6 @@
         </window>
     </objects>
     <resources>
-        <image name="tree" width="18" height="18"/>
+        <image name="tree-color" width="128" height="128"/>
     </resources>
 </document>

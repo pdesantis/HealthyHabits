@@ -10,8 +10,6 @@
 #import "Preferences.h"
 
 @interface PreferencesWindowController ()
-@property (weak) IBOutlet NSImageView *iconImageView;
-
 @property (weak) IBOutlet NSButton *startAtLoginCheckbox;
 @property (weak) IBOutlet NSButton *activateAtStartCheckbox;
 @property (weak) IBOutlet NSButton *showPreferencesAtStartCheckbox;
@@ -32,8 +30,6 @@
 
 - (void)awakeFromNib
 {
-    self.iconImageView.image = [NSApp applicationIconImage];
-
     Preferences *prefs = [Preferences sharedPreferences];
     self.startAtLoginCheckbox.state = prefs.startAtLogin ? NSOnState : NSOffState;
     self.activateAtStartCheckbox.state = prefs.activateAtStart ? NSOnState : NSOffState;
