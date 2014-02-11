@@ -16,7 +16,7 @@
     BOOL isMainAppRunning = NO;
     NSArray *runningApps = [[NSWorkspace sharedWorkspace] runningApplications];
     for (NSRunningApplication *app in runningApps) {
-        if ([app.bundleIdentifier isEqualToString:@"com.desantis.Healthy-Habits"]) {
+        if ([app.bundleIdentifier isEqualToString:@"com.pattappat.Healthy-Habits"]) {
             isMainAppRunning = [app isActive];
             break;
         }

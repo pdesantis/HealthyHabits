@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet NSMenuItem *activateButton;
 
 @property (strong, nonatomic) NSStatusItem *statusItem;
+@property (weak, nonatomic) CustomStatusView *statusView;
 
 @property (strong, nonatomic) id inputEventHandler;
 @property (strong, nonatomic) NSTimer *timer;
@@ -62,27 +63,27 @@ static NSTimeInterval const kTimerInterval = 1;
 - (void)awakeFromNib
 {
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:22.0f];
-    self.statusItem.title = NSLocalizedString(@"menu bar title - unactive", nil);
 
-    CustomStatusView *cool = [[CustomStatusView alloc] init];
-    cool.target = self;
-    cool.action = @selector(single:);
-    cool.rightAction = @selector(double:);
-    cool.activeImage = [NSImage imageNamed:@"tree"];
-    cool.activeImageHighlighted = [NSImage imageNamed:@"tree-white"];
-    cool.unactiveImage = [NSImage imageNamed:@"tree-empty"];
-    cool.unactiveImageHighlighted = [NSImage imageNamed:@"tree-empty-white"];
-    self.statusItem.view = cool;
+    CustomStatusView *statusView = [[CustomStatusView alloc] init];
+    statusView.target = self;
+    statusView.action = @selector(leftClick:);
+    statusView.rightAction = @selector(rightClick:);
+    statusView.activeImage = [NSImage imageNamed:@"tree"];
+    statusView.activeImageHighlighted = [NSImage imageNamed:@"tree-white"];
+    statusView.unactiveImage = [NSImage imageNamed:@"tree-empty"];
+    statusView.unactiveImageHighlighted = [NSImage imageNamed:@"tree-empty-white"];
+    self.statusItem.view = statusView;
+    self.statusView = statusView;
 
     self.menu.delegate = self;
 }
 
-- (IBAction)single:(id)sender
+- (IBAction)leftClick:(id)sender
 {
     [self activateButtonPressed:nil];
 }
 
-- (IBAction)double:(id)sender
+- (IBAction)rightClick:(id)sender
 {
     [self.statusItem popUpStatusItemMenu:self.menu];
 }
@@ -138,7 +139,7 @@ static NSTimeInterval const kTimerInterval = 1;
 #pragma mark - NSMenuDelegate
 - (void)menuDidClose:(NSMenu *)menu
 {
-    ((CustomStatusView *)self.statusItem.view).highlighted = NO;
+    self.statusView.highlighted = NO;
 }
 
 
@@ -152,10 +153,8 @@ static NSTimeInterval const kTimerInterval = 1;
     }];
     
     // Update labels
-    self.activateButton.title = NSLocalizedString(@"Deactivate", nil);
-
-    self.statusItem.title = NSLocalizedString(@"menu bar title - active", nil);
-    ((CustomStatusView *)self.statusItem.view).active = YES;
+    self.activateButton.title = NSLocalizedString(@"Deactivate", @"Deactivate menu item");
+    self.statusView.active = YES;
     
     // Create periodic update timer
     [self.timer invalidate];
@@ -175,10 +174,8 @@ static NSTimeInterval const kTimerInterval = 1;
     self.inputEventHandler = nil;
     
     // Update labels
-    self.activateButton.title = NSLocalizedString(@"Activate", nil);
-    ((CustomStatusView *)self.statusItem.view).active = NO;
-
-    self.statusItem.title = NSLocalizedString(@"menu bar title - unactive", nil);
+    self.activateButton.title = NSLocalizedString(@"Activate", @"Activate menu item");
+    self.statusView.active = NO;
     
     // Stop timer
     [self.timer invalidate];

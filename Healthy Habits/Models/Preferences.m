@@ -23,7 +23,7 @@ BOOL const kDefaultShowPreferencesAtStart = YES;
 NSInteger const kDefaultTimeDurationBetweenBreaks = 60 * 20;
 NSInteger const kDefaultTimeDurationOfBreak = 60 * 5;
 
-static NSString const *kLaunchHelperBundleID = @"com.desantis.Healthy-Habits-Launcher";
+static NSString const *kLaunchHelperBundleID = @"com.pattappat.Healthy-Habits-Launcher";
 
 @implementation Preferences
 

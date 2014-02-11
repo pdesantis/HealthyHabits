@@ -594,6 +594,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Healthy Habits/Healthy Habits.entitlements";
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Healthy Habits/Healthy Habits-Prefix.pch";
 				INFOPLIST_FILE = "Healthy Habits/Healthy Habits-Info.plist";

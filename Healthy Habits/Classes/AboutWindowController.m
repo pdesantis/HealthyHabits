@@ -21,7 +21,7 @@
 
 - (void)awakeFromNib
 {
-    self.versionLabel.stringValue = [NSString stringWithFormat:NSLocalizedString(@"version", @"short version, version"),
+    self.versionLabel.stringValue = [NSString stringWithFormat:@"%@ (%@)",
                                      [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
                                      [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
 }
