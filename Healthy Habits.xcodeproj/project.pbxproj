@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA20B0D218AA0B9B0004D6D8 /* Healthy Habits Launcher.app in Copy Launcher Helper App */ = {isa = PBXBuildFile; fileRef = FA20B0CB18AA0B020004D6D8 /* Healthy Habits Launcher.app */; };
+		FA20B0D418AA0BC90004D6D8 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA20B0D318AA0BC90004D6D8 /* ServiceManagement.framework */; };
 		FA31A03818A8B78D00C7EB83 /* BreakWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA31A03618A8B78D00C7EB83 /* BreakWindowController.m */; };
 		FA31A03918A8B78D00C7EB83 /* BreakWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA31A03618A8B78D00C7EB83 /* BreakWindowController.m */; };
 		FA31A03A18A8B78D00C7EB83 /* BreakWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA31A03718A8B78D00C7EB83 /* BreakWindowController.xib */; };
@@ -40,6 +42,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		FA20B0CA18AA0B020004D6D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA20B0C518AA0B010004D6D8 /* Healthy Habits Launcher.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA20B08E18AA0A790004D6D8;
+			remoteInfo = "Healthy Habits Launcher";
+		};
+		FA20B0CC18AA0B020004D6D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA20B0C518AA0B010004D6D8 /* Healthy Habits Launcher.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA20B0AF18AA0A790004D6D8;
+			remoteInfo = "Healthy Habits LauncherTests";
+		};
 		FABD220C17B2B26B0082C7A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FABD21E017B2B26A0082C7A7 /* Project object */;
@@ -49,7 +65,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FA20B0CE18AA0B2A0004D6D8 /* Copy Launcher Helper App */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				FA20B0D218AA0B9B0004D6D8 /* Healthy Habits Launcher.app in Copy Launcher Helper App */,
+			);
+			name = "Copy Launcher Helper App";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		FA20B0C518AA0B010004D6D8 /* Healthy Habits Launcher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Healthy Habits Launcher.xcodeproj"; path = "Healthy Habits Launcher/Healthy Habits Launcher.xcodeproj"; sourceTree = "<group>"; };
+		FA20B0D318AA0BC90004D6D8 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		FA31A03518A8B78D00C7EB83 /* BreakWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BreakWindowController.h; path = Classes/BreakWindowController.h; sourceTree = "<group>"; };
 		FA31A03618A8B78D00C7EB83 /* BreakWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BreakWindowController.m; path = Classes/BreakWindowController.m; sourceTree = "<group>"; };
 		FA31A03718A8B78D00C7EB83 /* BreakWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BreakWindowController.xib; path = Classes/BreakWindowController.xib; sourceTree = "<group>"; };
@@ -95,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA20B0D418AA0BC90004D6D8 /* ServiceManagement.framework in Frameworks */,
 				FABD222717B32B630082C7A7 /* IOKit.framework in Frameworks */,
 				FABD21EC17B2B26A0082C7A7 /* Cocoa.framework in Frameworks */,
 			);
@@ -112,6 +145,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA20B0C618AA0B010004D6D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA20B0CB18AA0B020004D6D8 /* Healthy Habits Launcher.app */,
+				FA20B0CD18AA0B020004D6D8 /* Healthy Habits LauncherTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		FA66DC9317C9EFB00010F2A6 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,15 +162,6 @@
 				FA66DC9917C9F0110010F2A6 /* AboutWindowController.xib */,
 			);
 			name = About;
-			sourceTree = "<group>";
-		};
-		FA72141A17CA9D4100D1DC2A /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				FAFAA96517D06F02006798DD /* Preferences.h */,
-				FAFAA96617D06F02006798DD /* Preferences.m */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		FAA7328118A9D44500A47D2A /* Break */ = {
@@ -153,6 +186,7 @@
 		FABD21DF17B2B26A0082C7A7 = {
 			isa = PBXGroup;
 			children = (
+				FA20B0C518AA0B010004D6D8 /* Healthy Habits Launcher.xcodeproj */,
 				FABD21F117B2B26A0082C7A7 /* Healthy Habits */,
 				FABD220E17B2B26B0082C7A7 /* Healthy HabitsTests */,
 				FABD21EA17B2B26A0082C7A7 /* Frameworks */,
@@ -172,6 +206,7 @@
 		FABD21EA17B2B26A0082C7A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA20B0D318AA0BC90004D6D8 /* ServiceManagement.framework */,
 				FABD222617B32B630082C7A7 /* IOKit.framework */,
 				FABD21EB17B2B26A0082C7A7 /* Cocoa.framework */,
 				FABD220917B2B26B0082C7A7 /* SenTestingKit.framework */,
@@ -199,7 +234,6 @@
 				FABD220017B2B26B0082C7A7 /* MainMenu.xib */,
 				FA66DC9317C9EFB00010F2A6 /* About */,
 				FAA7328118A9D44500A47D2A /* Break */,
-				FA72141A17CA9D4100D1DC2A /* Models */,
 				FADF37E718A4BDFC00E4A224 /* Preferences */,
 				FAA7328218A9D45E00A47D2A /* Status View */,
 				FABD222A17B32D640082C7A7 /* Utilities */,
@@ -253,6 +287,8 @@
 		FADF37E718A4BDFC00E4A224 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				FAFAA96517D06F02006798DD /* Preferences.h */,
+				FAFAA96617D06F02006798DD /* Preferences.m */,
 				FADF37E818A4BE3400E4A224 /* PreferencesWindowController.h */,
 				FADF37E918A4BE3400E4A224 /* PreferencesWindowController.m */,
 				FADF37EA18A4BE3400E4A224 /* PreferencesWindowController.xib */,
@@ -270,6 +306,7 @@
 				FABD21E417B2B26A0082C7A7 /* Sources */,
 				FABD21E517B2B26A0082C7A7 /* Frameworks */,
 				FABD21E617B2B26A0082C7A7 /* Resources */,
+				FA20B0CE18AA0B2A0004D6D8 /* Copy Launcher Helper App */,
 			);
 			buildRules = (
 			);
@@ -327,6 +364,12 @@
 			mainGroup = FABD21DF17B2B26A0082C7A7;
 			productRefGroup = FABD21E917B2B26A0082C7A7 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FA20B0C618AA0B010004D6D8 /* Products */;
+					ProjectRef = FA20B0C518AA0B010004D6D8 /* Healthy Habits Launcher.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FABD21E717B2B26A0082C7A7 /* Healthy Habits */,
@@ -334,6 +377,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		FA20B0CB18AA0B020004D6D8 /* Healthy Habits Launcher.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Healthy Habits Launcher.app";
+			remoteRef = FA20B0CA18AA0B020004D6D8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		FA20B0CD18AA0B020004D6D8 /* Healthy Habits LauncherTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Healthy Habits LauncherTests.xctest";
+			remoteRef = FA20B0CC18AA0B020004D6D8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FABD21E617B2B26A0082C7A7 /* Resources */ = {
@@ -517,7 +577,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Healthy Habits/Healthy Habits.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Healthy Habits/Healthy Habits-Prefix.pch";
@@ -532,7 +592,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Healthy Habits/Healthy Habits.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Healthy Habits/Healthy Habits-Prefix.pch";

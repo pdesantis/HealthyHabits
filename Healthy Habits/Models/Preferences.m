@@ -7,6 +7,7 @@
 //
 
 #import "Preferences.h"
+#import <ServiceManagement/ServiceManagement.h>
 
 // Preferences keys
 NSString * const kStartAtLoginKey = @"startAtLogin";
@@ -17,10 +18,12 @@ NSString * const kDurationBetweenBreaksKey = @"durationBetweenBreaks";
 
 // Default Preference values
 BOOL const kDefaultStartAtLogin = YES;
-BOOL const kDefaultActivateAtStart = YES;
+BOOL const kDefaultActivateAtStart = NO;
 BOOL const kDefaultShowPreferencesAtStart = YES;
 NSInteger const kDefaultTimeDurationBetweenBreaks = 60 * 20;
 NSInteger const kDefaultTimeDurationOfBreak = 60 * 5;
+
+static NSString const *kLaunchHelperBundleID = @"com.desantis.Healthy-Habits-Launcher";
 
 @implementation Preferences
 
@@ -56,7 +59,23 @@ NSInteger const kDefaultTimeDurationOfBreak = 60 * 5;
     [defaults setInteger:self.breakDuration forKey:kBreakDurationKey];
     [defaults setInteger:self.durationBetweenBreaks forKey:kDurationBetweenBreaksKey];
 
+    if (self.startAtLogin) {
+        [self enableLoginItem];
+    } else {
+        [self disableLoginItem];
+    }
+
     [defaults synchronize];
+}
+
+- (void)enableLoginItem
+{
+    SMLoginItemSetEnabled((__bridge CFStringRef)kLaunchHelperBundleID, true);
+}
+
+- (void)disableLoginItem
+{
+    SMLoginItemSetEnabled((__bridge CFStringRef)kLaunchHelperBundleID, false);
 }
 
 @end
